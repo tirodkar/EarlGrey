@@ -232,13 +232,6 @@ NSString *const kGREYAssertionErrorUserInfoKey = @"kGREYAssertionErrorUserInfoKe
       [defaultNotificationCenter postNotificationName:kGREYDidPerformActionNotification
                                                object:nil
                                              userInfo:actionUserInfo];
-      // If we encounter a failure and going to raise an exception, raise it right away before
-      // the main runloop drains any further.
-      if (actionError && !errorOrNil) {
-        [strongSelf grey_handleFailureOfAction:action
-                                   actionError:actionError
-                          userProvidedOutError:nil];
-      }
     } error:&executorError];
 
     // Failure to execute due to timeout should be represented as interaction timeout.
@@ -329,14 +322,6 @@ NSString *const kGREYAssertionErrorUserInfoKey = @"kGREYAssertionErrorUserInfoKe
       [defaultNotificationCenter postNotificationName:kGREYDidPerformAssertionNotification
                                                object:nil
                                              userInfo:assertionUserInfo];
-      // If we encounter a failure and going to raise an exception, raise it right away before
-      // the main runloop drains any further.
-      if (assertionError && !errorOrNil) {
-        [strongSelf grey_handleFailureOfAssertion:assertion
-                                   assertionError:assertionError
-                             elementNotFoundError:elementNotFoundError
-                             userProvidedOutError:nil];
-      }
     } error:&executorError];
 
     // Failure to execute due to timeout should be represented as interaction timeout.
