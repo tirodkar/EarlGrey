@@ -35,11 +35,6 @@ static XCTestCase *gCurrentExecutingTestCase;
 static const void *const kSetupTearDownSwizzedKey = &kSetupTearDownSwizzedKey;
 
 /**
- *  Object-association key for the localized test outputs for a test case.
- */
-static const void *const kLocalizedTestOutputsDirKey = &kLocalizedTestOutputsDirKey;
-
-/**
  *  Object-association key for the status of a test case.
  */
 static const void *const kTestCaseStatus = &kTestCaseStatus;
@@ -131,40 +126,6 @@ NSString *const kGREYXCTestCaseNotificationKey = @"GREYXCTestCaseNotificationKey
   return NSStringFromClass([self class]);
 }
 
-- (NSString *)grey_localizedTestOutputsDirectory {
-  NSString *localizedTestOutputsDir = objc_getAssociatedObject(self, kLocalizedTestOutputsDirKey);
-
-  if (localizedTestOutputsDir == nil) {
-    NSString *testClassName = [self grey_testClassName];
-    NSString *testMethodName = [self grey_testMethodName];
-
-    NSAssert(testMethodName, @"There's no current test method for the current test case: %@",
-             [XCTestCase grey_currentTestCase]);
-
-    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                 NSUserDomainMask,
-                                                                 YES);
-    NSAssert(documentPaths.count > 0,
-             @"At least one path for the user documents dir should exist.");
-    NSString *testOutputsDir =
-        [documentPaths.firstObject stringByAppendingPathComponent:@"earlgrey-test-outputs"];
-
-    NSString *testMethodDirName =
-        [NSString stringWithFormat:@"%@-%@", testClassName, testMethodName];
-    NSString *testSpecificOutputsDir =
-        [testOutputsDir stringByAppendingPathComponent:testMethodDirName];
-
-    localizedTestOutputsDir = [testSpecificOutputsDir stringByStandardizingPath];
-
-    objc_setAssociatedObject(self,
-                             kLocalizedTestOutputsDirKey,
-                             localizedTestOutputsDir,
-                             OBJC_ASSOCIATION_RETAIN);
-  }
-
-  return localizedTestOutputsDir;
-}
-
 - (void)grey_markAsFailedAtLine:(NSUInteger)line
                          inFile:(NSString *)file
                          reason:(NSString *)reason
@@ -218,13 +179,6 @@ NSString *const kGREYXCTestCaseNotificationKey = @"GREYXCTestCaseNotificationKey
       gCurrentExecutingTestCase = self;
       [self grey_setStatus:kGREYXCTestCaseStatusUnknown];
 
-      // We create a new, empty, outputs directory for the test method prior to its invocation.
-      NSError *error;
-      BOOL success =
-          [self grey_createDirRemovingExistingDir:[self grey_localizedTestOutputsDirectory]
-                                            error:&error];
-
-      NSAssert(success, @"Failed to create localized outputs directory with error: %@", error);
       INVOKE_ORIGINAL_IMP(void, @selector(grey_invokeTest));
 
       // The test may have been marked as failed if a failure was recorded with the
@@ -233,7 +187,7 @@ NSString *const kGREYXCTestCaseNotificationKey = @"GREYXCTestCaseNotificationKey
       if ([self grey_status] != kGREYXCTestCaseStatusFailed) {
         [self grey_setStatus:kGREYXCTestCaseStatusPassed];
       }
-    } @catch(NSException *exception) {
+    } @catch (NSException *exception) {
       [self grey_setStatus:kGREYXCTestCaseStatusFailed];
       if (![exception.name isEqualToString:kInternalTestInterruptException]) {
         @throw;

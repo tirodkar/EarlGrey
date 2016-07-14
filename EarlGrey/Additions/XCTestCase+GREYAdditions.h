@@ -102,11 +102,4 @@ UIKIT_EXTERN NSString *const kGREYXCTestCaseNotificationKey;
                          reason:(NSString *)reason
               detailDescription:(NSString *)description;
 
-/**
- *  @return A unique test outputs directory for the current test. All test related outputs should be
- *          under this directory (and subdirectories).
- */
-- (NSString *)grey_localizedTestOutputsDirectory;
-
 @end
-
