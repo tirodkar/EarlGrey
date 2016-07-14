@@ -33,6 +33,7 @@
 
 @interface GREYUIThreadExecutor (GREYPrivate)
 
+- (void)grey_performForcedCleanUpAfterTimeout:(CFTimeInterval)seconds;
 - (void)registerIdlingResource:(id<GREYIdlingResource>)resource;
 - (void)deregisterIdlingResource:(id<GREYIdlingResource>)resource;
 

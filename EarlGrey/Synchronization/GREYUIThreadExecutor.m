@@ -297,6 +297,26 @@ typedef NS_ENUM(NSInteger, EGExecutionState) {
 #pragma mark - Private
 
 /**
+ *  Drains the UI thread and waits for both the UI and idling resources to idle, for up to
+ *  @c seconds, after which GREYAppStateTracker is forcefully cleared if it is not idle.
+ *
+ *  @param seconds Amount of time to wait for the UI and idling resources to idle before forcefully
+ *                 clearing GREYAppStateTracker.
+ */
+- (void)grey_performForcedCleanUpAfterTimeout:(CFTimeInterval)seconds {
+  BOOL idled = [self drainUntilIdleWithTimeout:seconds];
+  // Cleanup state tracker state if not idle.
+  if (!idled) {
+    NSLog(@"EarlGrey tried waiting for %.1f seconds for the application to reach an idle state. It"
+          @" is now forced to cleanup the state tracker because the test might have caused the"
+          @" application to be in non-idle state indefinitely.\nFull state tracker description:%@",
+          seconds,
+          [GREYAppStateTracker sharedInstance]);
+    [[GREYAppStateTracker sharedInstance] grey_clearState];
+  }
+}
+
+/**
  *  @return An ordered set the registered and default idling resources that are currently busy.
  */
 - (NSOrderedSet *)grey_busyResources {
