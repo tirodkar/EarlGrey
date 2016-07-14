@@ -94,12 +94,10 @@ UIKIT_EXTERN NSString *const kGREYXCTestCaseNotificationKey;
  *
  *  @param line        Line number at which the failure occured.
  *  @param file        Name of the file in which the failure occured.
- *  @param reason      Short reason for the failure.
- *  @param description Full description of the failure.
+ *  @param description Description of the failure.
  */
 - (void)grey_markAsFailedAtLine:(NSUInteger)line
                          inFile:(NSString *)file
-                         reason:(NSString *)reason
-              detailDescription:(NSString *)description;
+                withDescription:(NSString *)description;
 
 @end

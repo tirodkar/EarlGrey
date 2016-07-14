@@ -41,12 +41,36 @@
 
 - (void)handleException:(GREYFrameworkException *)exception details:(NSString *)details {
   NSParameterAssert(exception);
+  
+  // Test name can be nil if EarlGrey is invoked outside the context of a XCTestCase.
+  NSString *testClassName = [[XCTestCase grey_currentTestCase] grey_testClassName];
+  NSString *testMethodName = [[XCTestCase grey_currentTestCase] grey_testMethodName];
+  NSString *description = [self grey_failureDescriptionForException:exception
+                                                            details:details
+                                                          callStack:[NSThread callStackSymbols]
+                                                      testClassName:testClassName
+                                                     testMethodName:testMethodName];
+  [[XCTestCase grey_currentTestCase] grey_markAsFailedAtLine:_lineNumber
+                                                      inFile:_fileName
+                                             withDescription:description];
+}
+
+#pragma mark - Private
+
+- (NSString *)grey_failureDescriptionForException:(GREYFrameworkException *)exception
+                                          details:(NSString *)details
+                                        callStack:(NSArray *)callStack
+                                    testClassName:(NSString *)testClassName
+                                   testMethodName:(NSString *)testMethodName {
   NSMutableString *exceptionLog = [[NSMutableString alloc] init];
-  // Start on fresh new line.
-  [exceptionLog appendString:@"\n"];
-  [exceptionLog appendFormat:@"Exception: %@\n", [exception name]];
-  if ([exception reason]) {
-    [exceptionLog appendFormat:@"Reason: %@\n", [exception reason]];
+  
+  [exceptionLog appendFormat:@"%@\n\n", exception.reason];
+  [exceptionLog appendFormat:@"Bundle ID:\n%@\n\n", [[NSBundle mainBundle] bundleIdentifier]];
+  [exceptionLog appendFormat:@"Call Stack:\n%@\n\n", callStack];
+  
+  [exceptionLog appendFormat:@"Exception: %@\n", exception.name];
+  if (exception.reason) {
+    [exceptionLog appendFormat:@"Reason: %@\n", exception.reason];
   } else {
     [exceptionLog appendString:@"Reason for exception was not provided.\n"];
   }
@@ -55,63 +79,43 @@
   }
   [exceptionLog appendString:@"\n"];
 
-  // Pull the raw test case name
-  // Test name can be nil if EarlGrey is invoked outside the context of a XCTestCase.
-  NSString *testClassName = [[XCTestCase grey_currentTestCase] grey_testClassName];
-  NSString *testMethodName = [[XCTestCase grey_currentTestCase] grey_testMethodName];
+  // Log the screenshot and before and after images (if available) for the element under test.
   NSString *screenshotName = [NSString stringWithFormat:@"%@_%@", testClassName, testMethodName];
-
-  // Log the screenshot.
   [self grey_savePNGImage:[GREYScreenshotUtil grey_takeScreenshotAfterScreenUpdates:NO]
               toFileNamed:[NSString stringWithFormat:@"%@.png", screenshotName]
               forCategory:@"Screenshot At Failure"
           appendingLogsTo:exceptionLog];
-
-  // Log before and after images (if available) for the element under test.
-  UIImage *beforeImage = [GREYVisibilityChecker grey_lastActualBeforeImage];
-  UIImage *afterExpectedImage = [GREYVisibilityChecker grey_lastExpectedAfterImage];
-  UIImage *afterActualImage = [GREYVisibilityChecker grey_lastActualAfterImage];
-
-  [self grey_savePNGImage:beforeImage
+  [self grey_savePNGImage:[GREYVisibilityChecker grey_lastActualBeforeImage]
               toFileNamed:[NSString stringWithFormat:@"%@_before.png", screenshotName]
               forCategory:@"Visibility Checker's Most Recent Before Image"
           appendingLogsTo:exceptionLog];
-  [self grey_savePNGImage:afterExpectedImage
+  [self grey_savePNGImage:[GREYVisibilityChecker grey_lastExpectedAfterImage]
               toFileNamed:[NSString stringWithFormat:@"%@_after_expected.png", screenshotName]
               forCategory:@"Visibility Checker's Most Recent Expected After Image"
           appendingLogsTo:exceptionLog];
-  [self grey_savePNGImage:afterActualImage
+  [self grey_savePNGImage:[GREYVisibilityChecker grey_lastActualAfterImage]
               toFileNamed:[NSString stringWithFormat:@"%@_after_actual.png", screenshotName]
               forCategory:@"Visibility Checker's Most Recent Actual After Image"
           appendingLogsTo:exceptionLog];
 
-  [exceptionLog appendString:@"\n\n"];
-
   // UI hierarchy.
-  [exceptionLog appendString:@"Application window hierarchy (ordered by window level, "
-                             @"from front to back):\n\n"];
-
+  [exceptionLog appendString:@"\nApplication window hierarchy (ordered by window level, from front"
+                             @" to back):\n\n"];
   // Legend.
   [exceptionLog appendString:@"Legend:\n"
                              @"[Window 1] = [Frontmost Window]\n"
                              @"[AX] = [Accessibility]\n"
                              @"[UIE] = [User Interaction Enabled]\n\n"];
-
   // Print windows from front to back.
   int index = 0;
   for (UIWindow *window in [GREYUIWindowProvider allWindows]) {
     index++;
-    NSString *hierarchy = [GREYElementHierarchy hierarchyStringForElement:window];
     [exceptionLog appendFormat:@"========== Window %d ==========\n\n%@\n\n",
-                               index, hierarchy];
+                               index, [GREYElementHierarchy hierarchyStringForElement:window]];
   }
-  [[XCTestCase grey_currentTestCase] grey_markAsFailedAtLine:_lineNumber
-                                                      inFile:_fileName
-                                                      reason:exception.reason
-                                           detailDescription:exceptionLog];
+  
+  return exceptionLog;
 }
-
-#pragma mark - Private
 
 /**
  *  Saves the given @c image as a PNG file to the given @c fileName and appends a log to
