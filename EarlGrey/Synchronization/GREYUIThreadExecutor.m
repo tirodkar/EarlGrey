@@ -23,6 +23,7 @@
 #import "Common/GREYConfiguration.h"
 #import "Common/GREYConstants.h"
 #import "Common/GREYDefines.h"
+#import "Common/GREYPrivate.h"
 #import "Synchronization/GREYAppStateTracker.h"
 #import "Synchronization/GREYDispatchQueueIdlingResource.h"
 #import "Synchronization/GREYOperationQueueIdlingResource.h"
@@ -238,6 +239,26 @@ typedef NS_ENUM(NSInteger, EGExecutionState) {
   NSParameterAssert(resource);
   @synchronized(_registeredIdlingResources) {
     [_registeredIdlingResources removeObject:resource];
+  }
+}
+
+/**
+ *  Drains the UI thread and waits for both the UI and idling resources to idle, for up to
+ *  @c seconds, after which GREYAppStateTracker is forcefully cleared if it is not idle.
+ *
+ *  @param seconds Amount of time to wait for the UI and idling resources to idle before forcefully
+ *                 clearing GREYAppStateTracker.
+ */
+- (void)performForcedCleanUpAfterTimeout:(CFTimeInterval)seconds {
+  BOOL idled = [self drainUntilIdleWithTimeout:seconds];
+  // Cleanup state tracker state if not idle.
+  if (!idled) {
+    NSLog(@"EarlGrey tried waiting for %.1f seconds for the application to reach an idle state. It"
+          @" is now forced to cleanup the state tracker because the test might have caused the"
+          @" application to be in non-idle state indefinitely.\nFull state tracker description:%@",
+          seconds,
+          [GREYAppStateTracker sharedInstance]);
+    [[GREYAppStateTracker sharedInstance] grey_clearState];
   }
 }
 

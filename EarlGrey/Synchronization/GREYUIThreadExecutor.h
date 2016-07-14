@@ -130,4 +130,13 @@ typedef void(^GREYExecBlock)(void);
                          block:(GREYExecBlock)execBlock
                          error:(__strong NSError **)error;
 
+/**
+ *  Drains the UI thread and waits for both the UI and idling resources to idle, for up to
+ *  @c seconds, after which GREYAppStateTracker is forcefully cleared if it is not idle.
+ *
+ *  @param seconds Amount of time to wait for the UI and idling resources to idle before forcefully
+ *                 clearing GREYAppStateTracker.
+ */
+- (void)performForcedCleanUpAfterTimeout:(CFTimeInterval)seconds;
+
 @end
