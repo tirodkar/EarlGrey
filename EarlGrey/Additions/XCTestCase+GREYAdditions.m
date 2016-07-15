@@ -20,7 +20,6 @@
 
 #import "Common/GREYSwizzler.h"
 #import "Exception/GREYFrameworkException.h"
-#import "Synchronization/GREYUIThreadExecutor.h"
 
 /**
  *  Current XCTestCase being executed or @c nil if outside the context of a running test.
@@ -70,15 +69,6 @@ NSString *const kGREYXCTestCaseNotificationKey = @"GREYXCTestCaseNotificationKey
                            replaceInstanceMethod:@selector(invokeTest)
                                       withMethod:@selector(grey_invokeTest)];
     NSAssert(swizzleSuccess, @"Cannot swizzle XCTestCase invokeTest");
-
-    // Forcefully clean GREYAppStateTracker if not idle after 5 seconds.
-    void (^forcedCleanUpBlock)(NSNotification *note) = ^(NSNotification *note) {
-      [[GREYUIThreadExecutor sharedInstance] performForcedCleanUpAfterTimeout:5];
-    };
-    [[NSNotificationCenter defaultCenter] addObserverForName:kGREYXCTestCaseInstanceDidTearDown
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:forcedCleanUpBlock];
   }
 }
 

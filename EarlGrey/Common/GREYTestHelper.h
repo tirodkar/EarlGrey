@@ -30,4 +30,14 @@
  */
 + (void)disableFastAnimation;
 
++ (BOOL)isSystemAlertShown;
++ (BOOL)isInApplicationProcess;
++ (BOOL)isInRemoteApplicationProcess;
++ (BOOL)isInXCTestProcess;
++ (NSString *)absoluteXCTestPluginPath;
++ (NSString *)relativeXCTestPluginPath;
++ (NSString *)absoluteEarlGreyPath;
++ (NSString *)relativeEarlGreyPath;
++ (NSString *)targetApplicationBundleID;
+
 @end

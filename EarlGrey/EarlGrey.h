@@ -34,6 +34,7 @@
 #import <EarlGrey/GREYActions.h>
 #import <EarlGrey/GREYAllOf.h>
 #import <EarlGrey/GREYAnyOf.h>
+#import <EarlGrey/GREYApplication.h>
 #import <EarlGrey/GREYAssertion.h>
 #import <EarlGrey/GREYAssertionBlock.h>
 #import <EarlGrey/GREYAssertionDefines.h>
@@ -65,6 +66,7 @@
 #import <EarlGrey/GREYScreenshotUtil.h>
 #import <EarlGrey/GREYScrollActionError.h>
 #import <EarlGrey/GREYSyncAPI.h>
+#import <EarlGrey/GREYTestBlock.h>
 #import <EarlGrey/GREYTestHelper.h>
 #import <EarlGrey/GREYUIThreadExecutor.h>
 #import <Foundation/Foundation.h>

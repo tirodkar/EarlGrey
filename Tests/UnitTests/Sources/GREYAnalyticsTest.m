@@ -50,7 +50,8 @@ NSString *gTestDelegateBundleId;
   // Setup a test delegate and verify the bundle ID passed to it is anonymized.
   Class<GREYAnalyticsDelegate> previousDelegate = [GREYAnalytics delegate];
   [GREYAnalytics setDelegate:[GREYAnalyticsTestDelegate class]];
-  [GREYAnalytics trackTestCaseCompletion];
+  [GREYAnalytics didInvokeEarlGrey];
+  [GREYAnalytics grey_trackTestCaseCompletion];
   XCTAssertEqualObjects([bundleId grey_md5String], gTestDelegateBundleId);
   [GREYAnalytics setDelegate:previousDelegate];
 }

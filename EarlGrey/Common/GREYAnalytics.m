@@ -20,7 +20,10 @@
 
 #import "Additions/NSString+GREYAdditions.h"
 #import "Additions/XCTestCase+GREYAdditions.h"
+#import "Assertion/GREYAssertionDefines.h"
 #import "Common/GREYAnalyticsDelegate.h"
+#import "Common/GREYConfiguration.h"
+#import "Common/GREYTestHelper.h"
 
 /**
  *  The Analytics tracking ID that receives EarlGrey usage data.
@@ -37,6 +40,8 @@ static NSString *const kAnalyticsInvocationCategory = @"Test Invocation";
  */
 static NSString *const kTrackingEndPoint = @"https://ssl.google-analytics.com";
 
+static BOOL didInvokeEarlGrey = NO;
+
 /**
  *  The currently set GREYAnalytics delegate for custom handling of analytics.
  */
@@ -47,25 +52,35 @@ Class<GREYAnalyticsDelegate> gAnalyticsDelegate;
 
 @implementation GREYAnalytics
 
++ (void)load {
+  if ([GREYTestHelper isInXCTestProcess]) {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(grey_trackTestCaseCompletion)
+                                                 name:kGREYXCTestCaseInstanceDidTearDown
+                                               object:nil];
+  }
+}
+
 + (void)setDelegate:(Class<GREYAnalyticsDelegate>)delegate {
+  I_CHECK_XCTEST_PROCESS();
+  
   gAnalyticsDelegate = delegate;
 }
 
 + (Class<GREYAnalyticsDelegate>)delegate {
+  I_CHECK_XCTEST_PROCESS();
+  
   // The default delegate is self.
   return gAnalyticsDelegate ? gAnalyticsDelegate : self;
 }
 
-+ (void)trackTestCaseCompletion {
-  NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
-  // If bundle ID is available use an MD5 of it otherwise use a placeholder.
-  bundleID = bundleID ? [bundleID grey_md5String] : @"<Missing bundle ID>";
-  NSNumber *testCaseCount = @([[XCTestSuite defaultTestSuite] testCaseCount]);
-
-  [self.delegate trackEventWithTrackingID:kTrackingID
-                                 category:kAnalyticsInvocationCategory
-                              subCategory:bundleID
-                                    value:testCaseCount];
++ (void)didInvokeEarlGrey {
+  I_CHECK_XCTEST_PROCESS();
+  
+  // Count a hit only if analytics are enabled and EarlGrey is called in the context of a test case.
+  if (GREY_CONFIG_BOOL(kGREYConfigKeyAnalyticsEnabled) && [XCTestCase grey_currentTestCase]) {
+    didInvokeEarlGrey = YES;
+  }
 }
 
 #pragma mark - GREYAnalyticsDelegate
@@ -86,6 +101,8 @@ Class<GREYAnalyticsDelegate> gAnalyticsDelegate;
                         category:(NSString *)category
                      subCategory:(NSString *)subCategory
                            value:(NSNumber *)valueOrNil {
+  I_CHECK_XCTEST_PROCESS();
+  
   if ([category length] == 0 || [subCategory length] == 0) {
     NSMutableArray *missingFields = [[NSMutableArray alloc] init];
     if ([category length] == 0) {
@@ -126,6 +143,27 @@ Class<GREYAnalyticsDelegate> gAnalyticsDelegate;
       NSLog(@"Failed to send analytics data due to %@.", error);
     }
   }] resume];
+}
+
+/**
+ *  Usage data is sent via Google Analytics indicating completion of a test case, if a delegate is
+ *  specified it is invoked to handle the analytics instead.
+ */
++ (void)grey_trackTestCaseCompletion {
+  I_CHECK_XCTEST_PROCESS();
+  
+  if (didInvokeEarlGrey) {
+    didInvokeEarlGrey = NO;
+    NSString *bundleID = [GREYTestHelper targetApplicationBundleID];
+    // If bundle ID is available use an MD5 of it otherwise use a placeholder.
+    bundleID = bundleID ? [bundleID grey_md5String] : @"<Missing bundle ID>";
+    NSNumber *testCaseCount = @([[XCTestSuite defaultTestSuite] testCaseCount]);
+    
+    [self.delegate trackEventWithTrackingID:kTrackingID
+                                   category:kAnalyticsInvocationCategory
+                                subCategory:bundleID
+                                      value:testCaseCount];
+  }
 }
 
 @end

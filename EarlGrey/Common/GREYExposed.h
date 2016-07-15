@@ -21,6 +21,17 @@
 
 #import <UIKit/UIKit.h>
 
+// Source: https://opensource.apple.com/source/libclosure/libclosure-65/Block_private.h
+struct Block_layout {
+  void *isa;
+  int32_t flags;
+  int32_t reserved;
+  void (*invoke)(void);
+  /* Block descriptor and imported variables not needed */
+};
+
+CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void);
+
 @interface UIWindow (GREYExposed)
 - (id)firstResponder;
 @end
@@ -358,4 +369,11 @@ IOHIDEventRef IOHIDEventCreateDigitizerFingerEvent(CFAllocatorRef allocator,
  *  @param specifier Is unused can be @c nil.
  */
 - (void)setPredictionPreferenceValue:(NSNumber *)enabled forSpecifier:(id)specifier;
+@end
+
+@interface XCTestConfiguration : NSObject
+
++ (instancetype)activeTestConfiguration;
+- (NSString *)targetApplicationBundleID;
+
 @end

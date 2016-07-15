@@ -25,6 +25,7 @@
 #import <EarlGrey/GREYDefines.h>
 #import <EarlGrey/GREYFailureHandler.h>
 #import <EarlGrey/GREYFrameworkException.h>
+#import <EarlGrey/GREYTestHelper.h>
 
 GREY_EXTERN id<GREYFailureHandler> greyFailureHandler;
 
@@ -328,7 +329,17 @@ GREY_EXTERN id<GREYFailureHandler> greyFailureHandler;
                         ##__VA_ARGS__)
 
 #define I_CHECK_MAIN_THREAD() \
-  I_GREYAssertTrue([NSThread isMainThread], @"Must be on the main thread.")
+  I_GREYAssertTrue([NSThread isMainThread], @"Must be on the main thread.\n")
+
+#define I_CHECK_APPLICATION_PROCESS() \
+  I_GREYAssertTrue([GREYTestHelper isInApplicationProcess], @"Must be in an application process.\n")
+
+#define I_CHECK_REMOTE_APPLICATION_PROCESS() \
+  I_GREYAssertTrue([GREYTestHelper isInRemoteApplicationProcess], \
+                   @"Must be in a remote application process.\n")
+
+#define I_CHECK_XCTEST_PROCESS() \
+  I_GREYAssertTrue([GREYTestHelper isInXCTestProcess], @"Must be in the process running XCTest.\n")
 
 /// @endcond
 

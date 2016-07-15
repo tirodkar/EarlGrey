@@ -42,10 +42,6 @@
  */
 + (void)setDelegate:(Class<GREYAnalyticsDelegate>)delegate;
 
-/**
- *  Usage data is sent via Google Analytics indicating completion of a test case, if a delegate is
- *  specified it is invoked to handle the analytics instead.
- */
-+ (void)trackTestCaseCompletion;
++ (void)didInvokeEarlGrey;
 
 @end

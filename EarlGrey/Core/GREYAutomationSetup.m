@@ -22,6 +22,7 @@
 
 #import "Common/GREYDefines.h"
 #import "Common/GREYExposed.h"
+#import "Common/GREYTestHelper.h"
 
 @implementation GREYAutomationSetup
 
@@ -43,12 +44,14 @@
   Class selfClass = [self class];
   [selfClass grey_setupCrashHandlers];
 
-  [self grey_enableAccessibility];
-  // Force software keyboard.
-  [[UIKeyboardImpl sharedInstance] setAutomaticMinimizationEnabled:NO];
-  // Turn off auto correction as it interferes with typing on iOS8.2+.
-  if (iOS8_2_OR_ABOVE()) {
-    [selfClass grey_modifyKeyboardSettings];
+  if ([GREYTestHelper isInApplicationProcess]) {
+    [self grey_enableAccessibility];
+    // Force software keyboard.
+    [[UIKeyboardImpl sharedInstance] setAutomaticMinimizationEnabled:NO];
+    // Turn off auto correction as it interferes with typing on iOS8.2+.
+    if (iOS8_2_OR_ABOVE()) {
+      [selfClass grey_modifyKeyboardSettings];
+    }
   }
 }
 

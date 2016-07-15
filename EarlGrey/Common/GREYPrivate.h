@@ -19,6 +19,7 @@
  *  @brief Exposes EarlGrey's interfaces and methods that are otherwise private.
  */
 
+#import <EarlGrey/GREYApplication.h>
 #import <EarlGrey/GREYAppStateTracker.h>
 #import <EarlGrey/GREYAssertions.h>
 #import <EarlGrey/GREYElementInteraction.h>
@@ -27,6 +28,8 @@
 #import <EarlGrey/GREYVisibilityChecker.h>
 
 @protocol GREYIdlingResource, GREYMatcher;
+
+@class GREYMessage;
 
 @interface GREYUIThreadExecutor (GREYPrivate)
 
@@ -52,6 +55,12 @@
 @interface GREYElementInteraction (GREYPrivate)
 
 - (NSArray *)matchedElementsWithTimeout:(NSTimeInterval)timeout error:(__strong NSError **)error;
+
+@end
+
+@interface GREYApplication (GREYPrivate)
+
++ (void)grey_callbackWithMessage:(GREYMessage *)message;
 
 @end
 

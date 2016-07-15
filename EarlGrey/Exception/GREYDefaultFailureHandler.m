@@ -24,7 +24,9 @@
 #import "Common/GREYPrivate.h"
 #import "Common/GREYScreenshotUtil.h"
 #import "Common/GREYVisibilityChecker.h"
+#import "Common/GREYTestHelper.h"
 #import "Exception/GREYFrameworkException.h"
+#import "Interprocess/GREYApplicationClient.h"
 #import "Provider/GREYUIWindowProvider.h"
 
 @implementation GREYDefaultFailureHandler {
@@ -42,17 +44,31 @@
 - (void)handleException:(GREYFrameworkException *)exception details:(NSString *)details {
   NSParameterAssert(exception);
   
-  // Test name can be nil if EarlGrey is invoked outside the context of a XCTestCase.
-  NSString *testClassName = [[XCTestCase grey_currentTestCase] grey_testClassName];
-  NSString *testMethodName = [[XCTestCase grey_currentTestCase] grey_testMethodName];
-  NSString *description = [self grey_failureDescriptionForException:exception
-                                                            details:details
-                                                          callStack:[NSThread callStackSymbols]
-                                                      testClassName:testClassName
-                                                     testMethodName:testMethodName];
-  [[XCTestCase grey_currentTestCase] grey_markAsFailedAtLine:_lineNumber
-                                                      inFile:_fileName
-                                             withDescription:description];
+  if ([GREYTestHelper isInXCTestProcess]) {
+    // Test name can be nil if EarlGrey is invoked outside the context of a XCTestCase.
+    NSString *testClassName = [[XCTestCase grey_currentTestCase] grey_testClassName];
+    NSString *testMethodName = [[XCTestCase grey_currentTestCase] grey_testMethodName];
+    NSString *description = [self grey_failureDescriptionForException:exception
+                                                              details:details
+                                                            callStack:[NSThread callStackSymbols]
+                                                        testClassName:testClassName
+                                                       testMethodName:testMethodName];
+    [[XCTestCase grey_currentTestCase] grey_markAsFailedAtLine:_lineNumber
+                                                        inFile:_fileName
+                                               withDescription:description];
+  } else {
+    // TODO: Implement.
+    NSString *testClassName = nil; // [GREYApplicationClient currentTestCaseClassName];
+    NSString *testMethodName = nil; // [GREYApplicationClient currentTestMethodName];
+    NSString *description = [self grey_failureDescriptionForException:exception
+                                                              details:details
+                                                            callStack:[NSThread callStackSymbols]
+                                                        testClassName:testClassName
+                                                       testMethodName:testMethodName];
+    [GREYApplicationClient reportFailureAtLine:_lineNumber
+                                        inFile:_fileName
+                               withDescription:description];
+  }
 }
 
 #pragma mark - Private

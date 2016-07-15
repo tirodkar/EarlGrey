@@ -17,6 +17,7 @@
 //
 // Exposes methods, classes and globals for Unit Testing.
 //
+#import <EarlGrey/GREYAnalytics.h>
 #import <EarlGrey/GREYAppStateTracker.h>
 #import <EarlGrey/GREYElementHierarchy.h>
 #import <EarlGrey/GREYProvider.h>
@@ -31,6 +32,12 @@ extern const NSInteger kGREYScrollDetectionLength;
 
 @interface NSObject (GREYExposedForTesting)
 - (BOOL)grey_isWebAccessibilityElement;
+@end
+
+@interface GREYAnalytics (GREYExposedForTesting)
+
++ (void)grey_trackTestCaseCompletion;
+
 @end
 
 @interface GREYAppStateTracker (GREYExposedForTesting)
