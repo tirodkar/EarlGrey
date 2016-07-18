@@ -23,39 +23,52 @@
 
 - (void)setUp {
   [super setUp];
-  [self openTestViewNamed:@"Activity Indicator Views"];
+  
+  [targetApp executeSyncWithBlock:^{
+    [FTRActivityIndicatorViewTest openTestViewNamed:@"Activity Indicator Views"];
+  }];
 }
 
 - (void)testSynchronizationWithStartAndStop {
-  [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartStop")] performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
-      assertWithMatcher:grey_text(@"Stopped")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartStop")] performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
+        assertWithMatcher:grey_text(@"Stopped")];
+  }];
 }
 
 - (void)testSynchronizationWithStartAndHide {
-  [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartHide")] performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
-      assertWithMatcher:grey_text(@"Hidden")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartHide")] performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
+        assertWithMatcher:grey_text(@"Hidden")];
+  }];
 }
 
 - (void)testSynchronizationWithStartAndHideWithoutHidesWhenStopped {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"HidesWhenStopped")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartHide")] performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
-      assertWithMatcher:grey_text(@"Hidden")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"HidesWhenStopped")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartHide")] performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
+        assertWithMatcher:grey_text(@"Hidden")];
+  }];
 }
 
 - (void)testSynchronizationWithStartAndRemoveFromSuperview {
-  [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartRemove")] performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
-      assertWithMatcher:grey_text(@"Removed from superview")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"StartRemove")] performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
+        assertWithMatcher:grey_text(@"Removed from superview")];
+  }];
 }
 
 - (void)testSynchronizationWithHideAndStartThenStop {
-  [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"HideStartStop")] performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
-      assertWithMatcher:grey_text(@"Stopped")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"HideStartStop")] performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Status")]
+        assertWithMatcher:grey_text(@"Stopped")];
+  }];
 }
 
 @end

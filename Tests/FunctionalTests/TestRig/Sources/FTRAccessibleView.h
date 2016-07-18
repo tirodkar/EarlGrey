@@ -15,6 +15,6 @@
 //
 
 // A UIView that contains accessibility elements.
+__attribute__((weak_import))
 @interface FTRAccessibleView : UIView
-
 @end

@@ -23,52 +23,63 @@
 
 - (void)setUp {
   [super setUp];
-  [self openTestViewNamed:@"Alert Views"];
+  
+  [targetApp executeSyncWithBlock:^{
+    [FTRAlertViewTest openTestViewNamed:@"Alert Views"];
+  }];
 }
 
 - (void)testSimpleAlertView {
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Simple Alert")]
-      performAction:[GREYActions actionForTap]];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Flee")] performAction:[GREYActions actionForTap]];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Simple Alert")]
+        performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Flee")] performAction:[GREYActions actionForTap]];
+  }];
 }
 
 - (void)testMultiOptionAlertView {
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Multi-Option Alert")]
-      performAction:[GREYActions actionForTap]];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Use Slingshot")]
-      performAction:[GREYActions actionForTap]];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Multi-Option Alert")]
-      performAction:[GREYActions actionForTap]];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Use Phaser")]
-      performAction:[GREYActions actionForTap]];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Roger")]
-      performAction:[GREYActions actionForTap]];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Multi-Option Alert")]
+        performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Use Slingshot")]
+        performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Multi-Option Alert")]
+        performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Use Phaser")]
+        performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Roger")]
+        performAction:[GREYActions actionForTap]];
+  }];
 }
 
 - (void)testAlertViewChain {
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Multi-Option Alert")]
-      performAction:[GREYActions actionForTap]];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Use Phaser")]
-      performAction:[GREYActions actionForTap]];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Roger")]
-      performAction:[GREYActions actionForTap]];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Multi-Option Alert")]
+        performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Use Phaser")]
+        performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Roger")]
+        performAction:[GREYActions actionForTap]];
+  }];
 }
 
-//TODO: Investigate this flaky test.
+// TODO: Investigate this flaky test.
 - (void)DISABLED_testStyledAlertView {
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Styled Alert")]
-      performAction:[GREYActions actionForTap]];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Styled Alert")]
+        performAction:[GREYActions actionForTap]];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Login")]
-      performAction:grey_typeText(@"test_user")];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"test_user")] assertWithMatcher:grey_notNil()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Login")]
+        performAction:grey_typeText(@"test_user")];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"test_user")] assertWithMatcher:grey_notNil()];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Password")]
-      performAction:grey_typeText(@"test_pwd")];
-  [[EarlGrey selectElementWithMatcher:grey_text(@"test_pwd")] assertWithMatcher:grey_notNil()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Password")]
+        performAction:grey_typeText(@"test_pwd")];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"test_pwd")] assertWithMatcher:grey_notNil()];
 
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Leave")]
-      performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Leave")]
+        performAction:[GREYActions actionForTap]];
+  }];
 }
 
 @end

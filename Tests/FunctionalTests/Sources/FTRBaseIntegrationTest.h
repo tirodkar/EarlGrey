@@ -15,9 +15,11 @@
 //
 
 // Base test class for all EarlGrey integration tests.
-@interface FTRBaseIntegrationTest : XCTestCase
+@interface FTRBaseIntegrationTest : XCTestCase  {
+  GREYApplication *targetApp;
+}
 
-- (void)openTestViewNamed:(NSString *)name;
++ (void)openTestViewNamed:(NSString *)name;
 
 #pragma mark - XCTestCase
 

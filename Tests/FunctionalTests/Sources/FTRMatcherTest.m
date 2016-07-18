@@ -24,57 +24,65 @@
 @implementation FTRMatcherTest
 
 - (void)testDescendantMatcherWithBasicViews {
-  [self openTestViewNamed:@"Basic Views"];
+  [targetApp executeSyncWithBlock:^{
+    [FTRMatcherTest openTestViewNamed:@"Basic Views"];
 
-  id<GREYMatcher> matchesAccessibleViewParentOfSimpleLabel =
-      grey_allOf(grey_descendant(grey_accessibilityLabel(@"Simple Label")),
-               grey_accessibilityLabel(@"tab2Container"),
-               nil);
-
-  [[EarlGrey selectElementWithMatcher:matchesAccessibleViewParentOfSimpleLabel]
-      assertWithMatcher:grey_notNil()];
-
-  id<GREYMatcher> matchesChildOfParentOfSimpleLabel =
-      grey_allOf(grey_ancestor(matchesAccessibleViewParentOfSimpleLabel),
-                 grey_kindOfClass([UISwitch class]),
+    id<GREYMatcher> matchesAccessibleViewParentOfSimpleLabel =
+        grey_allOf(grey_descendant(grey_accessibilityLabel(@"Simple Label")),
+                 grey_accessibilityLabel(@"tab2Container"),
                  nil);
-  [[EarlGrey selectElementWithMatcher:matchesChildOfParentOfSimpleLabel]
-      assertWithMatcher:grey_accessibilityLabel(@"Switch")];
+
+    [[EarlGrey selectElementWithMatcher:matchesAccessibleViewParentOfSimpleLabel]
+        assertWithMatcher:grey_notNil()];
+
+    id<GREYMatcher> matchesChildOfParentOfSimpleLabel =
+        grey_allOf(grey_ancestor(matchesAccessibleViewParentOfSimpleLabel),
+                   grey_kindOfClass([UISwitch class]),
+                   nil);
+    [[EarlGrey selectElementWithMatcher:matchesChildOfParentOfSimpleLabel]
+        assertWithMatcher:grey_accessibilityLabel(@"Switch")];
+  }];
 }
 
 - (void)testUserInteractionEnabledMatcherForBasicView {
-  [self openTestViewNamed:@"Basic Views"];
+  [targetApp executeSyncWithBlock:^{
+    [FTRMatcherTest openTestViewNamed:@"Basic Views"];
 
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")] performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")] performAction:grey_tap()];
 
-  // Simple Label has user interaction enabled set to NO in xib.
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Simple Label")]
-      assertWithMatcher:grey_not(grey_userInteractionEnabled())];
+    // Simple Label has user interaction enabled set to NO in xib.
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Simple Label")]
+        assertWithMatcher:grey_not(grey_userInteractionEnabled())];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Switch")]
-      assertWithMatcher:grey_userInteractionEnabled()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Switch")]
+        assertWithMatcher:grey_userInteractionEnabled()];
+  }];
 }
 
 - (void)testDescendantMatcherWithTableViews {
-  [self openTestViewNamed:@"Table Views"];
+  [targetApp executeSyncWithBlock:^{
+    [FTRMatcherTest openTestViewNamed:@"Table Views"];
 
-  id<GREYMatcher> descendantRowMatcher = grey_allOf(grey_kindOfClass([UITableViewCell class]),
-                                                grey_descendant(grey_accessibilityLabel(@"Row 1")),
-                                                nil);
+    id<GREYMatcher> descendantRowMatcher = grey_allOf(grey_kindOfClass([UITableViewCell class]),
+                                                  grey_descendant(grey_accessibilityLabel(@"Row 1")),
+                                                  nil);
 
-  [[EarlGrey selectElementWithMatcher:descendantRowMatcher] assertWithMatcher:grey_notNil()];
+    [[EarlGrey selectElementWithMatcher:descendantRowMatcher] assertWithMatcher:grey_notNil()];
+  }];
 }
 
 -(void)testDescendantMatcherWithAccessibilityViews {
-  [self openTestViewNamed:@"Accessibility Views"];
+  [targetApp executeSyncWithBlock:^{
+    [FTRMatcherTest openTestViewNamed:@"Accessibility Views"];
 
-  id<GREYMatcher> matchesParentOfSquare =
-      grey_allOf(grey_descendant(grey_accessibilityValue(@"SquareElementValue")),
-               grey_kindOfClass([FTRAccessibleView class]),
-               nil);
+    id<GREYMatcher> matchesParentOfSquare =
+        grey_allOf(grey_descendant(grey_accessibilityValue(@"SquareElementValue")),
+                 grey_kindOfClass([FTRAccessibleView class]),
+                 nil);
 
-  [[EarlGrey selectElementWithMatcher:matchesParentOfSquare]
-      assertWithMatcher:grey_descendant(grey_accessibilityLabel(@"SquareElementLabel"))];
+    [[EarlGrey selectElementWithMatcher:matchesParentOfSquare]
+        assertWithMatcher:grey_descendant(grey_accessibilityLabel(@"SquareElementLabel"))];
+  }];
 }
 
 @end

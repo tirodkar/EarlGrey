@@ -21,91 +21,96 @@
 @interface FTRErrorAPITest : FTRBaseIntegrationTest
 @end
 
-@implementation FTRErrorAPITest {
-  id<GREYMatcher> _matcherForNonExistingTab;
-}
+@implementation FTRErrorAPITest
 
 - (void)setUp {
   [super setUp];
 
-  [self openTestViewNamed:@"Basic Views"];
-  _matcherForNonExistingTab = grey_text(@"Tab That Does Not Exist");
+  [targetApp executeSyncWithBlock:^{
+    [FTRErrorAPITest openTestViewNamed:@"Basic Views"];
+  }];
 }
 
 - (void)testCallAllAssertionDefines {
-  GREYAssert(42, @"42 should assert fine.");
-  GREYAssertTrue(1 == 1, @"1 should be equal to 1");
-  GREYAssertFalse(0 == 1, @"0 shouldn't be equal to 1");
-  GREYAssertEqual(1, 1, @"1 should be equal to 1");
-  GREYAssertNotEqual(1, 2, @"1 should not be equal to 2");
-  GREYAssertEqualObjects(@"foo", [[NSString alloc] initWithFormat:@"foo"],
-                         @"strings foo must be equal");
-  GREYAssertNotEqualObjects(@"foo", @"bar", @"string foo and bar must not be equal");
-  GREYAssertNil(nil, @"nil should be nil");
-  GREYAssertNotNil([[NSObject alloc] init], @"a valid object should not be nil");
+  [targetApp executeSyncWithBlock:^{
+    GREYAssert(42, @"42 should assert fine.");
+    GREYAssertTrue(1 == 1, @"1 should be equal to 1");
+    GREYAssertFalse(0 == 1, @"0 shouldn't be equal to 1");
+    GREYAssertEqual(1, 1, @"1 should be equal to 1");
+    GREYAssertNotEqual(1, 2, @"1 should not be equal to 2");
+    GREYAssertEqualObjects(@"foo", [[NSString alloc] initWithFormat:@"foo"],
+                           @"strings foo must be equal");
+    GREYAssertNotEqualObjects(@"foo", @"bar", @"string foo and bar must not be equal");
+    GREYAssertNil(nil, @"nil should be nil");
+    GREYAssertNotNil([[NSObject alloc] init], @"a valid object should not be nil");
+  }];
 }
 
 - (void)testAssertionErrorAPI {
-  NSError *error;
+  [targetApp executeSyncWithBlock:^{
+    NSError *error;
 
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")] performAction:grey_tap() error:&error];
-  GREYAssertNil(error, @"Must be nil");
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")] performAction:grey_tap() error:&error];
+    GREYAssertNil(error, @"Must be nil");
 
-  [[EarlGrey selectElementWithMatcher:_matcherForNonExistingTab]
-      assertWithMatcher:grey_nil() error:&error];
-  GREYAssertNil(error, @"Must be nil");
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Tab That Does Not Exist")]
+        assertWithMatcher:grey_nil() error:&error];
+    GREYAssertNil(error, @"Must be nil");
 
-  [[EarlGrey selectElementWithMatcher:_matcherForNonExistingTab]
-      assertWithMatcher:grey_notNil() error:&error];
-  GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
-                 @"domain should match");
-  GREYAssertTrue(error.code == kGREYInteractionElementNotFoundErrorCode, @"code should match");
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Tab That Does Not Exist")]
+        assertWithMatcher:grey_notNil() error:&error];
+    GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
+                   @"domain should match");
+    GREYAssertTrue(error.code == kGREYInteractionElementNotFoundErrorCode, @"code should match");
 
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")]
-      assertWithMatcher:grey_nil() error:&error];
-  GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
-                 @"domain should match");
-  GREYAssertTrue(error.code == kGREYInteractionAssertionFailedErrorCode, @"code should match");
-
-  [EarlGrey setFailureHandler:[[FTRFailureHandler alloc] init]];
-  // Should throw exception.
-  @try {
     [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")]
-         assertWithMatcher:grey_nil() error:nil];
-    GREYFail(@"Shouldn't be here");
-  } @catch (GREYFrameworkException *exception) {
-    GREYAssertTrue([exception.name isEqual:@"AssertionFailedException"],
-                 @"exception name didn't match");
-  }
+        assertWithMatcher:grey_nil() error:&error];
+    GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
+                   @"domain should match");
+    GREYAssertTrue(error.code == kGREYInteractionAssertionFailedErrorCode, @"code should match");
+
+    [EarlGrey setFailureHandler:[[FTRFailureHandler alloc] init]];
+    // Should throw exception.
+    @try {
+      [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")]
+           assertWithMatcher:grey_nil() error:nil];
+      GREYFail(@"Shouldn't be here");
+    } @catch (GREYFrameworkException *exception) {
+      GREYAssertTrue([exception.name isEqual:@"AssertionFailedException"],
+                   @"exception name didn't match");
+    }
+  }];
 }
 
 - (void)testActionErrorAPI {
-  NSError *error;
+  [targetApp executeSyncWithBlock:^{
+    NSError *error;
 
-  // Element not found.
-  [[EarlGrey selectElementWithMatcher:_matcherForNonExistingTab] performAction:grey_tap()
-                                                                         error:&error];
-  GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
-                 @"domain should match");
-  GREYAssertTrue(error.code == kGREYInteractionElementNotFoundErrorCode, @"code should match");
+    // Element not found.
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Tab That Does Not Exist")]
+        performAction:grey_tap() error:&error];
+    GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
+                   @"domain should match");
+    GREYAssertTrue(error.code == kGREYInteractionElementNotFoundErrorCode, @"code should match");
 
-  // grey_type on a Tab should cause action constraints to fail.
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")] performAction:grey_typeText(@"")
-                                                                   error:&error];
-  GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
-                 @"domain should match");
-  GREYAssertTrue(error.code == kGREYInteractionActionFailedErrorCode, @"code should match");
-
-  [EarlGrey setFailureHandler:[[FTRFailureHandler alloc] init]];
-  // Should throw exception.
-  @try {
+    // grey_type on a Tab should cause action constraints to fail.
     [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")] performAction:grey_typeText(@"")
-                                                                     error:nil];
-    GREYFail(@"Shouldn't be here");
-  } @catch (GREYFrameworkException *exception) {
-    GREYAssertTrue([exception.name isEqual:@"ActionFailedException"],
-                   @"exception name didn't match");
-  }
+                                                                     error:&error];
+    GREYAssertTrue([error.domain isEqualToString:kGREYInteractionErrorDomain],
+                   @"domain should match");
+    GREYAssertTrue(error.code == kGREYInteractionActionFailedErrorCode, @"code should match");
+
+    [EarlGrey setFailureHandler:[[FTRFailureHandler alloc] init]];
+    // Should throw exception.
+    @try {
+      [[EarlGrey selectElementWithMatcher:grey_text(@"Tab 2")] performAction:grey_typeText(@"")
+                                                                       error:nil];
+      GREYFail(@"Shouldn't be here");
+    } @catch (GREYFrameworkException *exception) {
+      GREYAssertTrue([exception.name isEqual:@"ActionFailedException"],
+                     @"exception name didn't match");
+    }
+  }];
 }
 
 @end

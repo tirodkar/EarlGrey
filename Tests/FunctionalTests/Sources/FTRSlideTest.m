@@ -24,76 +24,93 @@
 
 - (void)setUp {
   [super setUp];
-  [self openTestViewNamed:@"Slider Views"];
+  
+  [targetApp executeSyncWithBlock:^{
+    [FTRSlideTest openTestViewNamed:@"Slider Views"];
+  }];
 }
 
 - (void)testSlider1SlidesCloseToZero {
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider1")]
-      performAction:grey_moveSliderToValue(0.125f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(0.125f,
-                                                           kGREYAcceptableFloatDifference))];
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider1")]
-      performAction:grey_moveSliderToValue(0.0f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(0.0f, 0))];
+  [targetApp executeSyncWithBlock:^{
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider1")]
+        performAction:grey_moveSliderToValue(0.125f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(0.125f,
+                                                             kGREYAcceptableFloatDifference))];
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider1")]
+        performAction:grey_moveSliderToValue(0.0f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(0.0f, 0))];
+  }];
 }
 
 - (void)testSlider2SlidesToValue {
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider2")]
-      performAction:grey_moveSliderToValue(15.74f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(15.74f,
-                                                           kGREYAcceptableFloatDifference))];
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider2")]
-      performAction:grey_moveSliderToValue(21.03f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(21.03f,
-                                                           kGREYAcceptableFloatDifference))];
+  [targetApp executeSyncWithBlock:^{
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider2")]
+        performAction:grey_moveSliderToValue(15.74f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(15.74f,
+                                                             kGREYAcceptableFloatDifference))];
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider2")]
+        performAction:grey_moveSliderToValue(21.03f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(21.03f,
+                                                             kGREYAcceptableFloatDifference))];
+  }];
 }
 
 - (void)testSlider3SlidesToClosestValue {
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider3")]
-      performAction:grey_moveSliderToValue(0.0f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(0, 0))];
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider3")]
-      performAction:grey_moveSliderToValue(900.0f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(900.0f,
-                                                           kGREYAcceptableFloatDifference))];
+  [targetApp executeSyncWithBlock:^{
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider3")]
+        performAction:grey_moveSliderToValue(0.0f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(0, 0))];
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider3")]
+        performAction:grey_moveSliderToValue(900.0f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(900.0f,
+                                                             kGREYAcceptableFloatDifference))];
+  }];
 }
 
 - (void)testSlider4IsExactlyValue {
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider4")]
-      performAction:grey_moveSliderToValue(500000.0f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(500000.0f,
-                                                          kGREYAcceptableFloatDifference))];
+  [targetApp executeSyncWithBlock:^{
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider4")]
+        performAction:grey_moveSliderToValue(500000.0f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(500000.0f,
+                                                            kGREYAcceptableFloatDifference))];
+  }];
 }
 
 - (void)testSlider5SnapsToValueWithSnapOnTouchUp {
-  // For sliders that "stick" (have tick marks) to certain values, the tester must calculate the
-  // tick value that will result by setting the slider to an arbitrary value.
-  // See FTRSliderViewController.m for details on how my slider's tick values were calculated.
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider5")]
-      performAction:grey_moveSliderToValue(60.0f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(60.3f,
-                                                           kGREYAcceptableFloatDifference))];
+  [targetApp executeSyncWithBlock:^{
+    // For sliders that "stick" (have tick marks) to certain values, the tester must calculate the
+    // tick value that will result by setting the slider to an arbitrary value.
+    // See FTRSliderViewController.m for details on how my slider's tick values were calculated.
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider5")]
+        performAction:grey_moveSliderToValue(60.0f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(60.3f,
+                                                             kGREYAcceptableFloatDifference))];
+  }];
 }
 
 - (void)testSlider6SnapsToValueWithContinuousSnapping {
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider6")]
-      performAction:grey_moveSliderToValue(37.5f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(50.0f,
-                                                           kGREYAcceptableFloatDifference))];
+  [targetApp executeSyncWithBlock:^{
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider6")]
+        performAction:grey_moveSliderToValue(37.5f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(50.0f,
+                                                             kGREYAcceptableFloatDifference))];
 
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider6")]
-      performAction:grey_moveSliderToValue(62.5f)]
-      assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(50.0f,
-                                                           kGREYAcceptableFloatDifference))];
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"slider6")]
+        performAction:grey_moveSliderToValue(62.5f)]
+        assertWithMatcher:grey_sliderValueMatcher(grey_closeTo(50.0f,
+                                                             kGREYAcceptableFloatDifference))];
+  }];
 }
 
 - (void)testSmallSliderSnapsToAllValues {
-  for (int i = 0; i <= 10; i++) {
-    id<GREYMatcher> closeToMatcher = grey_closeTo((double)i, kGREYAcceptableFloatDifference);
-    [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"sliderSnap")]
-        performAction:grey_moveSliderToValue((float)i)]
-        assertWithMatcher:grey_sliderValueMatcher(closeToMatcher)];
-  }
+  [targetApp executeSyncWithBlock:^{
+    for (int i = 0; i <= 10; i++) {
+      id<GREYMatcher> closeToMatcher = grey_closeTo((double)i, kGREYAcceptableFloatDifference);
+      [[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"sliderSnap")]
+          performAction:grey_moveSliderToValue((float)i)]
+          assertWithMatcher:grey_sliderValueMatcher(closeToMatcher)];
+    }
+  }];
 }
 
 @end

@@ -23,29 +23,36 @@
 
 - (void)setUp {
   [super setUp];
-  [self openTestViewNamed:@"Network Test"];
+  
+  [targetApp executeSyncWithBlock:^{
+    [FTRNetworkTest openTestViewNamed:@"Network Test"];
+  }];
 }
 
 - (void)testSynchronizationWorksWithNSURLConnection {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
-      assertWithMatcher:grey_notVisible()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"NSURLConnectionTest")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
-      assertWithMatcher:grey_sufficientlyVisible()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRResponseVerifiedLabel")]
-      assertWithMatcher:grey_sufficientlyVisible()];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
+        assertWithMatcher:grey_notVisible()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"NSURLConnectionTest")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
+        assertWithMatcher:grey_sufficientlyVisible()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRResponseVerifiedLabel")]
+        assertWithMatcher:grey_sufficientlyVisible()];
+  }];
 }
 
 - (void)testSynchronizationWorksWithNSURLSession {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
-      assertWithMatcher:grey_notVisible()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"NSURLSessionTest")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
-      assertWithMatcher:grey_sufficientlyVisible()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRResponseVerifiedLabel")]
-      assertWithMatcher:grey_sufficientlyVisible()];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
+        assertWithMatcher:grey_notVisible()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"NSURLSessionTest")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRRequestCompletedLabel")]
+        assertWithMatcher:grey_sufficientlyVisible()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRResponseVerifiedLabel")]
+        assertWithMatcher:grey_sufficientlyVisible()];
+  }];
 }
 
 @end

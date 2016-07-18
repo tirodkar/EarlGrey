@@ -18,10 +18,10 @@
 
 #import "FTRNetworkProxy.h"
 
-@implementation FTRBaseIntegrationTest {
-  // This variable holds the current failure handler before any tests sully it.
-  id<GREYFailureHandler> _currentFailureHandler;
-}
+// This variable holds the current failure handler before any tests sully it.
+static id<GREYFailureHandler> currentFailureHandler;
+
+@implementation FTRBaseIntegrationTest
 
 + (void)initialize {
   static dispatch_once_t onceToken;
@@ -34,28 +34,45 @@
 
 - (void)setUp {
   [super setUp];
-  _currentFailureHandler = greyFailureHandler;
-  // By default, make all test assume portrait position.
-  [EarlGrey rotateDeviceToOrientation:UIDeviceOrientationPortrait errorOrNil:nil];
+  
+  targetApp = [GREYApplication targetApplication];
+  if (![targetApp isHealthy]) {
+    [targetApp launch];
+    [targetApp executeSyncWithBlock:^{
+      // Start proxying all requests.
+      [FTRNetworkProxy ftr_setProxyEnabled:YES];
+      [FTRNetworkProxy ftr_addProxyRuleForUrlsMatchingRegexString:@".*" responseString:@"OK"];
+    }];
+  }
+
+  [targetApp executeSyncWithBlock:^{
+    currentFailureHandler = greyFailureHandler;
+    // By default, make all tests assume portrait position.
+    [EarlGrey rotateDeviceToOrientation:UIDeviceOrientationPortrait errorOrNil:nil];
+  }];
 }
 
 - (void)tearDown {
-  UIWindow *delegateWindow = [UIApplication sharedApplication].delegate.window;
-  UINavigationController *navController;
-  if ([delegateWindow.rootViewController isKindOfClass:[UINavigationController class]]) {
-    navController = (UINavigationController *)delegateWindow.rootViewController;
-  } else {
-    navController = delegateWindow.rootViewController.navigationController;
-  }
-  [navController popToRootViewControllerAnimated:YES];
+  if ([targetApp isHealthy]) {
+    [targetApp executeSyncWithBlock:^{
+      UIWindow *delegateWindow = [UIApplication sharedApplication].delegate.window;
+      UINavigationController *navController;
+      if ([delegateWindow.rootViewController isKindOfClass:[UINavigationController class]]) {
+        navController = (UINavigationController *)delegateWindow.rootViewController;
+      } else {
+        navController = delegateWindow.rootViewController.navigationController;
+      }
+      [navController popToRootViewControllerAnimated:YES];
 
-  [[GREYConfiguration sharedInstance] reset];
-  [EarlGrey setFailureHandler:_currentFailureHandler];
+      [[GREYConfiguration sharedInstance] reset];
+      [EarlGrey setFailureHandler:currentFailureHandler];
+    }];
+  }
 
   [super tearDown];
 }
 
-- (void)openTestViewNamed:(NSString *)name {
++ (void)openTestViewNamed:(NSString *)name {
   // Attempt to open the named view, the views are listed as a rows of a UITableView and tapping
   // it opens the view.
   NSError *error;

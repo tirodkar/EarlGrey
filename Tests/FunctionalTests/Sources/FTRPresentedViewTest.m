@@ -25,14 +25,19 @@
 
 - (void)setUp {
   [super setUp];
-  [self openTestViewNamed:@"Presented Views"];
+  
+  [targetApp executeSyncWithBlock:^{
+    [FTRPresentedViewTest openTestViewNamed:@"Presented Views"];
+  }];
 }
 
 - (void)testDismissToResetNavController {
-  FTRAppDelegate *app = (FTRAppDelegate *)[[UIApplication sharedApplication] delegate];
-  [app resetRootNavigationController];
+  [targetApp executeSyncWithBlock:^{
+    FTRAppDelegate *app = (FTRAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app resetRootNavigationController];
 
-  [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"Dismiss")] performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"Dismiss")] performAction:grey_tap()];
+  }];
 }
 
 @end

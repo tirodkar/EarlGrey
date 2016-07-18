@@ -38,102 +38,116 @@
 
 - (void)setUp {
   [super setUp];
-  [self openTestViewNamed:@"Web Views"];
-  [FTRNetworkProxy ftr_setProxyEnabled:NO];
+  
+  [targetApp executeSyncWithBlock:^{
+    [FTRLocalUIWebViewTest openTestViewNamed:@"Web Views"];
+    [FTRNetworkProxy ftr_setProxyEnabled:NO];
+  }];
 }
 
 - (void)tearDown {
-  [[GREYAppStateTracker sharedInstance] grey_clearState];
-  [FTRNetworkProxy ftr_setProxyEnabled:YES];
+  [targetApp executeSyncWithBlock:^{
+    [[GREYAppStateTracker sharedInstance] grey_clearState];
+    [FTRNetworkProxy ftr_setProxyEnabled:YES];
+  }];
+    
   [super tearDown];
 }
 
 - (void)testSuccessiveTaps {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"IMAGES")]
-      performAction:[GREYActions actionForTap]];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"IMAGES")]
+        performAction:[GREYActions actionForTap]];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"APPS")]
-      performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"APPS")]
+        performAction:[GREYActions actionForTap]];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"NEWS")]
-      performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"NEWS")]
+        performAction:[GREYActions actionForTap]];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"ALL")]
-      performAction:[GREYActions actionForTap]];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"ALL")]
+        performAction:[GREYActions actionForTap]];
+  }];
 }
 
 - (void)testAJAXLoad {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
-      performAction:grey_tap()];
-  id<GREYMatcher> nextPageMatcher =
-      grey_allOf(grey_accessibilityLabel(@"Next page"), grey_interactable(), nil);
-  [[[EarlGrey selectElementWithMatcher:nextPageMatcher]
-      usingSearchAction:grey_scrollInDirection(kGREYDirectionDown, 200)
-      onElementWithMatcher:grey_kindOfClass([UIWebView class])]
-      performAction:grey_tap()];
-  [self ftr_waitForWebElementWithName:@"APPS" elementMatcher:grey_accessibilityLabel(@"APPS")];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"APPS")]
-      assertWithMatcher:grey_sufficientlyVisible()];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
+        performAction:grey_tap()];
+    id<GREYMatcher> nextPageMatcher =
+        grey_allOf(grey_accessibilityLabel(@"Next page"), grey_interactable(), nil);
+    [[[EarlGrey selectElementWithMatcher:nextPageMatcher]
+        usingSearchAction:grey_scrollInDirection(kGREYDirectionDown, 200)
+        onElementWithMatcher:grey_kindOfClass([UIWebView class])]
+        performAction:grey_tap()];
+    [FTRLocalUIWebViewTest ftr_waitForWebElementWithName:@"APPS" elementMatcher:grey_accessibilityLabel(@"APPS")];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"APPS")]
+        assertWithMatcher:grey_sufficientlyVisible()];
+  }];
 }
 
 - (void)testTextFieldInteraction {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
-      performAction:grey_tap()];
-  id<GREYMatcher> searchButtonMatcher = grey_accessibilityHint(@"Search");
-  [self ftr_waitForWebElementWithName:@"Search Button" elementMatcher:searchButtonMatcher];
-  [[[EarlGrey selectElementWithMatcher:searchButtonMatcher]
-      performAction:grey_clearText()]
-      performAction:grey_typeText(@"20 + 22\n")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
+        performAction:grey_tap()];
+    id<GREYMatcher> searchButtonMatcher = grey_accessibilityHint(@"Search");
+    [FTRLocalUIWebViewTest ftr_waitForWebElementWithName:@"Search Button" elementMatcher:searchButtonMatcher];
+    [[[EarlGrey selectElementWithMatcher:searchButtonMatcher]
+        performAction:grey_clearText()]
+        performAction:grey_typeText(@"20 + 22\n")];
 
-  [self ftr_waitForWebElementWithName:@"Search Button" elementMatcher:grey_accessibilityLabel(@"42")];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"42")]
-      assertWithMatcher:grey_sufficientlyVisible()];
+    [FTRLocalUIWebViewTest ftr_waitForWebElementWithName:@"Search Button" elementMatcher:grey_accessibilityLabel(@"42")];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"42")]
+        assertWithMatcher:grey_sufficientlyVisible()];
 
-  // We need to tap because the second time we do typeAfterClearning, it passes firstResponder check
-  // and never ends up auto-tapping on search field.
-  [[EarlGrey selectElementWithMatcher:searchButtonMatcher]
-      performAction:grey_tap()];
+    // We need to tap because the second time we do typeAfterClearning, it passes firstResponder check
+    // and never ends up auto-tapping on search field.
+    [[EarlGrey selectElementWithMatcher:searchButtonMatcher]
+        performAction:grey_tap()];
 
-  [[[EarlGrey selectElementWithMatcher:searchButtonMatcher]
-      performAction:grey_clearText()]
-      performAction:grey_typeText(@"Who wrote Star Wars IV - A New Hope?\n")];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Google Search")]
-      performAction:grey_tap()];
-  id<GREYMatcher> resultMatcher = grey_allOf(grey_accessibilityLabel(@"George Lucas"),
-                                             grey_accessibilityTrait(UIAccessibilityTraitHeader),
-                                             nil);
-  [self ftr_waitForWebElementWithName:@"Search Result" elementMatcher:resultMatcher];
-  [[EarlGrey selectElementWithMatcher:resultMatcher] assertWithMatcher:grey_sufficientlyVisible()];
+    [[[EarlGrey selectElementWithMatcher:searchButtonMatcher]
+        performAction:grey_clearText()]
+        performAction:grey_typeText(@"Who wrote Star Wars IV - A New Hope?\n")];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"Google Search")]
+        performAction:grey_tap()];
+    id<GREYMatcher> resultMatcher = grey_allOf(grey_accessibilityLabel(@"George Lucas"),
+                                               grey_accessibilityTrait(UIAccessibilityTraitHeader),
+                                               nil);
+    [FTRLocalUIWebViewTest ftr_waitForWebElementWithName:@"Search Result" elementMatcher:resultMatcher];
+    [[EarlGrey selectElementWithMatcher:resultMatcher] assertWithMatcher:grey_sufficientlyVisible()];
+  }];
 }
 
 - (void)testJavaScriptExecution {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
-      performAction:grey_tap()];
-  id<GREYAction> jsAction =
-      grey_javaScriptExecution(@"window.location.href='http://images.google.com'", nil);
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")]
-      performAction:jsAction];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"loadGoogle")]
+        performAction:grey_tap()];
+    id<GREYAction> jsAction =
+        grey_javaScriptExecution(@"window.location.href='http://images.google.com'", nil);
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")]
+        performAction:jsAction];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"IMAGES")]
-      assertWithMatcher:grey_sufficientlyVisible()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"IMAGES")]
+        assertWithMatcher:grey_sufficientlyVisible()];
 
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")] performAction:
-      grey_javaScriptExecution(@"window.location.href='http://translate.google.com'", nil)];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")] performAction:
+        grey_javaScriptExecution(@"window.location.href='http://translate.google.com'", nil)];
 
-  id<GREYAction> executeJavascript =
-      grey_javaScriptExecution(@"window.location.href='http://play.google.com'", nil);
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")]
-      performAction:executeJavascript];
+    id<GREYAction> executeJavascript =
+        grey_javaScriptExecution(@"window.location.href='http://play.google.com'", nil);
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")]
+        performAction:executeJavascript];
 
-  NSString *jsResult;
-  NSString *expected = @"4";
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")]
-      performAction:[GREYActions actionForJavaScriptExecution:@"2 + 2" output:&jsResult]];
+    NSString *jsResult;
+    NSString *expected = @"4";
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"FTRTestWebView")]
+        performAction:[GREYActions actionForJavaScriptExecution:@"2 + 2" output:&jsResult]];
 
-  GREYAssertTrue([jsResult isEqualToString:expected], @"Expected:%@, Actual:%@",
-                 expected, jsResult);
+    GREYAssertTrue([jsResult isEqualToString:expected], @"Expected:%@, Actual:%@",
+                   expected, jsResult);
+  }];
 }
 
 #pragma mark - Private
@@ -145,7 +159,7 @@
  *  @param name    Name of the element to wait for.
  *  @param matcher Matcher that uniquely matches the element to wait for.
  */
-- (void)ftr_waitForWebElementWithName:(NSString *)name elementMatcher:(id<GREYMatcher>)matcher {
++ (void)ftr_waitForWebElementWithName:(NSString *)name elementMatcher:(id<GREYMatcher>)matcher {
   // TODO: Improve EarlGrey webview synchronization so that it automatically waits for the page to
   // load removing the need for conditions such as this.
   [[GREYCondition conditionWithName:[name stringByAppendingString:@" Condition"]

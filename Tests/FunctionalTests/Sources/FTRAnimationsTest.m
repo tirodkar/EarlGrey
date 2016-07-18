@@ -23,42 +23,53 @@
 
 - (void)setUp {
   [super setUp];
-  [self openTestViewNamed:@"Animations"];
+  
+  [targetApp executeSyncWithBlock:^{
+    [FTRAnimationsTest openTestViewNamed:@"Animations"];
+  }];
 }
 
 - (void)testUIViewAnimation {
-  [[[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"UIViewAnimationControl")]
-      performAction:grey_tap()]
-      assertWithMatcher:grey_buttonTitle(@"Started")];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
-      assertWithMatcher:grey_text(@"UIView animation finished")];
+  [targetApp executeSyncWithBlock:^{
+    [[[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"UIViewAnimationControl")]
+        performAction:grey_tap()]
+        assertWithMatcher:grey_buttonTitle(@"Started")];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
+        assertWithMatcher:grey_text(@"UIView animation finished")];
+  }];
 }
 
 - (void)testPausedAnimations {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
-      assertWithMatcher:grey_text(@"Stopped")];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationControl")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
-      assertWithMatcher:grey_text(@"Paused")];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationControl")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
-      assertWithMatcher:grey_notVisible()];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
+        assertWithMatcher:grey_text(@"Stopped")];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationControl")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
+        assertWithMatcher:grey_text(@"Paused")];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationControl")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
+        assertWithMatcher:grey_notVisible()];
+  }];
 }
 
 - (void)testBeginEndIgnoringEvents {
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"BeginIgnoringEvents")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
-      assertWithMatcher:grey_text(@"EndIgnoringEvents")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"BeginIgnoringEvents")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityLabel(@"AnimationStatus")]
+        assertWithMatcher:grey_text(@"EndIgnoringEvents")];
+  }];
 }
 
 - (void)testDelayedExecution {
-  [[EarlGrey selectElementWithMatcher:grey_text(@"Perform Delayed Execution")]
-      performAction:grey_tap()];
-  [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"delayedLabelStatus")]
-      assertWithMatcher:grey_text(@"Executed Twice!")];
+  [targetApp executeSyncWithBlock:^{
+    [[EarlGrey selectElementWithMatcher:grey_text(@"Perform Delayed Execution")]
+        performAction:grey_tap()];
+    [[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"delayedLabelStatus")]
+        assertWithMatcher:grey_text(@"Executed Twice!")];
+  }];
 }
 
 @end
