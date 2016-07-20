@@ -18,6 +18,7 @@
 
 #include <objc/runtime.h>
 
+#import "EarlGrey/GREYPrivate.h"
 #import "Common/GREYSwizzler.h"
 #import "Exception/GREYFrameworkException.h"
 #import "Synchronization/GREYUIThreadExecutor.h"

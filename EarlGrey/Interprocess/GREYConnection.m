@@ -44,13 +44,10 @@ static NSString *requestedRemoteConnectionName = nil;
 
 - (void)sendMessage:(GREYMessage *)message {
   NSParameterAssert(message);
-  
-  NSString *encodedString = [[message data] base64EncodedStringWithOptions:0];
-  CFNotificationCenterPostNotification(CFNotificationCenterGetDistributedCenter(),
-                                       (CFStringRef)remoteName,
-                                       (CFStringRef)encodedString,
-                                       NULL,
-                                       TRUE);
+  NSData *remoteNameAsData = [NSKeyedArchiver archivedDataWithRootObject:remoteName];
+  NSArray *dataToSend = @[remoteNameAsData, [message data]];
+  [[UIPasteboard generalPasteboard] setData:[NSKeyedArchiver archivedDataWithRootObject:dataToSend]
+                          forPasteboardType:remoteName];
 }
 
 #pragma mark - Private

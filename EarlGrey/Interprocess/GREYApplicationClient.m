@@ -86,7 +86,7 @@ static NSString *const kApplicationClientInternalException = @"kApplicationClien
   NSAssert(!connection, @"connection should not have been created yet");
   
   connection = [GREYConnection remoteConnectionWithName:@"com.google.earlgrey"];
-  NSLog(@"GREYApplicationClient estabilished a connection to the server");
+  NSLog(@"GREYApplicationClient established a connection to the server");
 }
 
 + (void)handleCheckConnectionMessage {

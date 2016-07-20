@@ -25,16 +25,41 @@
 #import "GREYTestHelper.h"
 
 static NSString *listenerName;
+static NSString *defaultListenerName = @"com.google.earlgrey";
 
-static void listenerCallback(CFNotificationCenterRef center,
-                              void *observer,
-                              CFStringRef name,
-                              const void *encodedString,
-                              CFDictionaryRef userInfo) {
-  NSData *data = [[NSData alloc] initWithBase64EncodedString:(__bridge NSString *)encodedString
-                                                     options:0];
-  GREYMessage *message = [GREYMessage messageFromData:data];
-  
+@implementation GREYConnectionListener
+
++ (void)load {
+  if ([GREYTestHelper isInXCTestProcess]) {
+    [GREYConnectionListener createListenerWithName:defaultListenerName];
+  } else if ([GREYTestHelper isInRemoteApplicationProcess]) {
+    NSString *listenerName = [NSString stringWithFormat:@"com.google.earlgrey.app.%@",
+                              [[NSBundle mainBundle] bundleIdentifier]];
+    [GREYConnectionListener createListenerWithName:listenerName];
+  }
+}
+
++ (void)createListenerWithName:(NSString *)name {
+  NSParameterAssert(name);
+  NSAssert(!listenerName, @"should be nil, because this method must only be called once");
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(pasteboardChangedNotification)
+                                               name:UIPasteboardChangedNotification
+                                             object:nil];
+}
+
++ (void)pasteboardChangedNotification {
+  NSString *name = listenerName ? listenerName : defaultListenerName;
+  NSData *data = [[UIPasteboard generalPasteboard] dataForPasteboardType:name];
+  NSArray *unarchivedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+  NSString *connectionRequesterName =
+      [NSKeyedUnarchiver unarchiveObjectWithData:[unarchivedData firstObject]];
+  if (![connectionRequesterName isEqualToString:name]) {
+    return;
+  }
+  GREYMessage *message = [GREYMessage messageFromData:[unarchivedData lastObject]];
+  [[UIPasteboard generalPasteboard] setData:[[NSData alloc] init]
+                          forPasteboardType:listenerName];
   switch ([message messageType]) {
     case kGREYMessageConnect:
     case kGREYMessageConnectionOK:
@@ -53,31 +78,6 @@ static void listenerCallback(CFNotificationCenterRef center,
       [GREYApplicationClient callbackWithMessage:message];
       return;
   }
-}
-
-@implementation GREYConnectionListener
-
-+ (void)load {
-  if ([GREYTestHelper isInXCTestProcess]) {
-    [GREYConnectionListener createListenerWithName:@"com.google.earlgrey"];
-  } else if ([GREYTestHelper isInRemoteApplicationProcess]) {
-    NSString *listenerName = [NSString stringWithFormat:@"com.google.earlgrey.app.%@",
-                              [[NSBundle mainBundle] bundleIdentifier]];
-    [GREYConnectionListener createListenerWithName:listenerName];
-  }
-}
-
-+ (void)createListenerWithName:(NSString *)name {
-  NSParameterAssert(name);
-  NSAssert(!listenerName, @"should be nil, because this method must only be called once");
-  
-  listenerName = name;
-  CFNotificationCenterAddObserver(CFNotificationCenterGetDistributedCenter(),
-                                  NULL,
-                                  &listenerCallback,
-                                  (CFStringRef)listenerName,
-                                  NULL,
-                                  CFNotificationSuspensionBehaviorDeliverImmediately);
 }
 
 @end
