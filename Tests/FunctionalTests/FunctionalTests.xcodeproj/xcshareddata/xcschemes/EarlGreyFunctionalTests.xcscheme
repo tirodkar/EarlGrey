@@ -21,6 +21,116 @@
                BlueprintName = "EarlGreyFunctionalTests"
                ReferencedContainer = "container:FunctionalTests.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "FTRActionSheetTest">
+               </Test>
+               <Test
+                  Identifier = "FTRActivityIndicatorViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAlertViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsNoEarlGreyUsageTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsPostSuperTearDownOptOutTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsTearDownOptOutTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsTestCaseSetupOptOutTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsTestHarnessTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsTestMethodOptOutTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnalyticsTestSuiteSetupOptOutTest">
+               </Test>
+               <Test
+                  Identifier = "FTRAnimationsTest">
+               </Test>
+               <Test
+                  Identifier = "FTRBaseAnalyticsTest">
+               </Test>
+               <Test
+                  Identifier = "FTRBaseIntegrationTest">
+               </Test>
+               <Test
+                  Identifier = "FTRBasicInteractionTest">
+               </Test>
+               <Test
+                  Identifier = "FTRCollectionViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRErrorAPITest">
+               </Test>
+               <Test
+                  Identifier = "FTRGeometryTest">
+               </Test>
+               <Test
+                  Identifier = "FTRGestureTest">
+               </Test>
+               <Test
+                  Identifier = "FTRKeyboardKeysTest">
+               </Test>
+               <Test
+                  Identifier = "FTRLocalUIWebViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRMatcherTest">
+               </Test>
+               <Test
+                  Identifier = "FTRMultiFingerSwipeTest">
+               </Test>
+               <Test
+                  Identifier = "FTRNetworkTest">
+               </Test>
+               <Test
+                  Identifier = "FTROrientationChangeTest">
+               </Test>
+               <Test
+                  Identifier = "FTROrientationPortraitOnlyChangeTest">
+               </Test>
+               <Test
+                  Identifier = "FTRPickerViewInteractionTest">
+               </Test>
+               <Test
+                  Identifier = "FTRPinchViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRPresentedViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRScreenshotTest">
+               </Test>
+               <Test
+                  Identifier = "FTRScrollViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRSlideTest">
+               </Test>
+               <Test
+                  Identifier = "FTRSyncAPITest">
+               </Test>
+               <Test
+                  Identifier = "FTRUITableViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRUIWebViewTest">
+               </Test>
+               <Test
+                  Identifier = "FTRVisibilityTest">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <EnvironmentVariables>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06243D6C1EC136200039AE15 /* ExampleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 06243D6B1EC136200039AE15 /* ExampleTest.m */; };
 		59467DF91C9373A50089498B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 59467D801C9373A50089498B /* LICENSE */; };
 		59467DFB1C9373A50089498B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59467D851C9373A50089498B /* Default-568h@2x.png */; };
 		59467DFC1C9373A50089498B /* Default-667@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59467D861C9373A50089498B /* Default-667@2x.png */; };
@@ -195,6 +196,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06243D6B1EC136200039AE15 /* ExampleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleTest.m; sourceTree = "<group>"; };
 		59467D5B1C9373A50089498B /* FTRAccessibilityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTRAccessibilityTest.m; sourceTree = "<group>"; };
 		59467D5C1C9373A50089498B /* FTRActionSheetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTRActionSheetTest.m; sourceTree = "<group>"; };
 		59467D5D1C9373A50089498B /* FTRActivityIndicatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTRActivityIndicatorTest.m; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 				D210ED9A1E733EE400978B9E /* FTRMultiFingerSwipeGestureRecognizerViewController.h */,
 				D210ED9B1E733EE400978B9E /* FTRMultiFingerSwipeGestureRecognizerViewController.m */,
 				D210ED9C1E733EE400978B9E /* FTRMultiFingerSwipeGestureRecognizerViewController.xib */,
+				06243D6B1EC136200039AE15 /* ExampleTest.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				59467E901C9373F00089498B /* FTRSplashViewController.m in Sources */,
 				59467E921C9373F00089498B /* FTRTableViewController.m in Sources */,
 				59467E951C9373F00089498B /* FTRTypingViewController.m in Sources */,
+				06243D6C1EC136200039AE15 /* ExampleTest.m in Sources */,
 				59467E981C9373F00089498B /* FTRVisibilityTestViewController.m in Sources */,
 				59467E9B1C9373F00089498B /* FTRWebViewController.m in Sources */,
 				59467E9D1C9373F00089498B /* main.m in Sources */,
@@ -1012,6 +1016,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PREFIX_HEADER = TestRig/FunctionalTestRig.pch;
 				INFOPLIST_FILE = "TestRig/FunctionalTestRig-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1031,6 +1036,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				GCC_PREFIX_HEADER = TestRig/FunctionalTestRig.pch;
 				INFOPLIST_FILE = "TestRig/FunctionalTestRig-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
