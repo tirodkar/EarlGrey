@@ -39,39 +39,6 @@
 		59467E2D1C9373A50089498B /* FTRTypingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59467DD01C9373A50089498B /* FTRTypingViewController.xib */; };
 		59467E2F1C9373A50089498B /* FTRVisibilityTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59467DD31C9373A50089498B /* FTRVisibilityTestViewController.xib */; };
 		59467E311C9373A50089498B /* FTRWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59467DD61C9373A50089498B /* FTRWebViewController.xib */; };
-		59467E331C9373B90089498B /* FTRAccessibilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D5B1C9373A50089498B /* FTRAccessibilityTest.m */; };
-		59467E341C9373B90089498B /* FTRActionSheetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D5C1C9373A50089498B /* FTRActionSheetTest.m */; };
-		59467E351C9373B90089498B /* FTRActivityIndicatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D5D1C9373A50089498B /* FTRActivityIndicatorTest.m */; };
-		59467E361C9373B90089498B /* FTRAlertViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D5E1C9373A50089498B /* FTRAlertViewTest.m */; };
-		59467E371C9373B90089498B /* FTRAnalyticsTearDownOptOutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D5F1C9373A50089498B /* FTRAnalyticsTearDownOptOutTest.m */; };
-		59467E381C9373B90089498B /* FTRAnalyticsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D601C9373A50089498B /* FTRAnalyticsTest.m */; };
-		59467E391C9373B90089498B /* FTRAnalyticsTestCaseSetupOptOutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D611C9373A50089498B /* FTRAnalyticsTestCaseSetupOptOutTest.m */; };
-		59467E3A1C9373B90089498B /* FTRAnalyticsTestMethodOptOutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D621C9373A50089498B /* FTRAnalyticsTestMethodOptOutTest.m */; };
-		59467E3B1C9373B90089498B /* FTRAnalyticsTestSuiteSetupOptOutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D631C9373A50089498B /* FTRAnalyticsTestSuiteSetupOptOutTest.m */; };
-		59467E3C1C9373B90089498B /* FTRAnimationsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D641C9373A50089498B /* FTRAnimationsTest.m */; };
-		59467E3E1C9373B90089498B /* FTRBaseAnalyticsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D661C9373A50089498B /* FTRBaseAnalyticsTest.m */; };
-		59467E401C9373B90089498B /* FTRBaseIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D681C9373A50089498B /* FTRBaseIntegrationTest.m */; };
-		59467E411C9373B90089498B /* FTRBasicInteractionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D691C9373A50089498B /* FTRBasicInteractionTest.m */; };
-		59467E421C9373B90089498B /* FTRCollectionViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D6A1C9373A50089498B /* FTRCollectionViewTest.m */; };
-		59467E431C9373B90089498B /* FTRErrorAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D6B1C9373A50089498B /* FTRErrorAPITest.m */; };
-		59467E451C9373B90089498B /* FTRFailureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D6D1C9373A50089498B /* FTRFailureHandler.m */; };
-		59467E461C9373B90089498B /* FTRGeometryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D6E1C9373A50089498B /* FTRGeometryTest.m */; };
-		59467E471C9373B90089498B /* FTRGestureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D6F1C9373A50089498B /* FTRGestureTest.m */; };
-		59467E481C9373B90089498B /* FTRKeyboardKeysTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D701C9373A50089498B /* FTRKeyboardKeysTest.m */; };
-		59467E491C9373B90089498B /* FTRLocalUIWebViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D711C9373A50089498B /* FTRLocalUIWebViewTest.m */; };
-		59467E4A1C9373B90089498B /* FTRMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D721C9373A50089498B /* FTRMatcherTest.m */; };
-		59467E4B1C9373B90089498B /* FTRNetworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D731C9373A50089498B /* FTRNetworkTest.m */; };
-		59467E4C1C9373B90089498B /* FTROrientationChangeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D741C9373A50089498B /* FTROrientationChangeTest.m */; };
-		59467E4D1C9373B90089498B /* FTROrientationPortraitOnlyChangeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D751C9373A50089498B /* FTROrientationPortraitOnlyChangeTest.m */; };
-		59467E4E1C9373B90089498B /* FTRPickerViewInteractionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D761C9373A50089498B /* FTRPickerViewInteractionTest.m */; };
-		59467E4F1C9373B90089498B /* FTRPresentedViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D771C9373A50089498B /* FTRPresentedViewTest.m */; };
-		59467E501C9373B90089498B /* FTRScreenshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D781C9373A50089498B /* FTRScreenshotTest.m */; };
-		59467E511C9373B90089498B /* FTRScrollViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D791C9373A50089498B /* FTRScrollViewTest.m */; };
-		59467E521C9373B90089498B /* FTRSlideTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D7A1C9373A50089498B /* FTRSlideTest.m */; };
-		59467E531C9373B90089498B /* FTRSyncAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D7B1C9373A50089498B /* FTRSyncAPITest.m */; };
-		59467E541C9373B90089498B /* FTRUITableViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D7C1C9373A50089498B /* FTRUITableViewTest.m */; };
-		59467E551C9373B90089498B /* FTRUIWebViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D7D1C9373A50089498B /* FTRUIWebViewTest.m */; };
-		59467E561C9373B90089498B /* FTRVisibilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D7E1C9373A50089498B /* FTRVisibilityTest.m */; };
 		59467E581C9373F00089498B /* FTRAccessibilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D921C9373A50089498B /* FTRAccessibilityViewController.m */; };
 		59467E5B1C9373F00089498B /* FTRAccessibleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D951C9373A50089498B /* FTRAccessibleView.m */; };
 		59467E5D1C9373F00089498B /* FTRActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467D971C9373A50089498B /* FTRActionSheetViewController.m */; };
@@ -98,15 +65,8 @@
 		59467E981C9373F00089498B /* FTRVisibilityTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467DD21C9373A50089498B /* FTRVisibilityTestViewController.m */; };
 		59467E9B1C9373F00089498B /* FTRWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467DD51C9373A50089498B /* FTRWebViewController.m */; };
 		59467E9D1C9373F00089498B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59467DD71C9373A50089498B /* main.m */; };
-		596D89BF1C05AB1600025714 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D89BE1C05AB0600025714 /* EarlGrey.framework */; };
-		61192E411DB18A6500C74371 /* FTRAnalyticsPostSuperTearDownOptOutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61192E3F1DB18A6500C74371 /* FTRAnalyticsPostSuperTearDownOptOutTest.m */; };
-		61192E421DB18A6500C74371 /* FTRAnalyticsNoEarlGreyUsageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61192E401DB18A6500C74371 /* FTRAnalyticsNoEarlGreyUsageTest.m */; };
-		6122AEB11DB7EF65006A094A /* FTRAnalyticsTestHarnessTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6122AEB01DB7EF65006A094A /* FTRAnalyticsTestHarnessTest.m */; };
-		61784D7C1DB6F4AB00054372 /* FTRAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 61784D7B1DB6F4AB00054372 /* FTRAssertionHandler.m */; };
 		61E4E0B31D7559A9007F9EE6 /* FTRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4E0B11D7559A9007F9EE6 /* FTRImageViewController.m */; };
 		61E4E0B41D7559A9007F9EE6 /* FTRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E4E0B21D7559A9007F9EE6 /* FTRImageViewController.xib */; };
-		61E4E0C31D755A9B007F9EE6 /* FTRPinchViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4E0C11D755A5C007F9EE6 /* FTRPinchViewTest.m */; };
-		D210ED941E72214A00978B9E /* FTRMultiFingerSwipeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D210ED931E72214A00978B9E /* FTRMultiFingerSwipeTest.m */; };
 		D210ED9D1E733EE400978B9E /* FTRMultiFingerSwipeGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D210ED9B1E733EE400978B9E /* FTRMultiFingerSwipeGestureRecognizerViewController.m */; };
 		D210ED9E1E733EE400978B9E /* FTRMultiFingerSwipeGestureRecognizerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D210ED9C1E733EE400978B9E /* FTRMultiFingerSwipeGestureRecognizerViewController.xib */; };
 		FD193FF21BBDDBE800153959 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF11BBDDBE800153959 /* CoreFoundation.framework */; };
@@ -114,24 +74,9 @@
 		FD193FF61BBDDBF500153959 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF51BBDDBF500153959 /* CoreGraphics.framework */; };
 		FD193FF81BBDDBFB00153959 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF71BBDDBFB00153959 /* UIKit.framework */; };
 		FD193FFA1BBDDC0000153959 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF91BBDDC0000153959 /* QuartzCore.framework */; };
-		FD387B4C1CA9C65100958AEE /* FTRSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD387B391CA9C5E200958AEE /* FTRSwiftTests.swift */; };
-		FD387B4F1CA9C69C00958AEE /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D89BE1C05AB0600025714 /* EarlGrey.framework */; };
-		FD387B501CA9C6AB00958AEE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5470D61BBDE0A9000661FD /* IOKit.framework */; };
-		FD387B511CA9C6B300958AEE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF91BBDDC0000153959 /* QuartzCore.framework */; };
-		FD387B521CA9C6B800958AEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF71BBDDBFB00153959 /* UIKit.framework */; };
-		FD387B531CA9C6BE00958AEE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF51BBDDBF500153959 /* CoreGraphics.framework */; };
-		FD387B541CA9C6C500958AEE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF11BBDDBE800153959 /* CoreFoundation.framework */; };
-		FD387B551CA9C6C500958AEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF31BBDDBED00153959 /* Foundation.framework */; };
-		FD387B571CA9C6DA00958AEE /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 596D89BE1C05AB0600025714 /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		FD5471351BBDF990000661FD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF11BBDDBE800153959 /* CoreFoundation.framework */; };
-		FD5471361BBDF995000661FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF31BBDDBED00153959 /* Foundation.framework */; };
-		FD5471371BBDF99B000661FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF51BBDDBF500153959 /* CoreGraphics.framework */; };
-		FD5471381BBDF9A1000661FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF71BBDDBFB00153959 /* UIKit.framework */; };
-		FD5471391BBDF9AC000661FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD193FF91BBDDC0000153959 /* QuartzCore.framework */; };
-		FD54713A1BBDF9C0000661FD /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5470D61BBDE0A9000661FD /* IOKit.framework */; };
-		FD60CB611C5B5B1B00F8E318 /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 596D89BE1C05AB0600025714 /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		FD2705FC1EC289A80017FDDF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD2705FB1EC289A80017FDDF /* XCTest.framework */; };
+		FD2706091EC28D840017FDDF /* DummyTestTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2706081EC28D840017FDDF /* DummyTestTarget.m */; };
 		FD771E761DC1D9F500E199A1 /* FTRCustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD771E751DC1D9F500E199A1 /* FTRCustomTextView.m */; };
-		FD983D6C1D67E8B40059F4CC /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8277DE1D677D9F00C7C2AD /* EarlGrey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,58 +87,14 @@
 			remoteGlobalIDString = FDE4FFA91BE831AA001C172E;
 			remoteInfo = EarlGrey;
 		};
-		596D89C01C05AB8A00025714 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 596D89B91C05AB0600025714 /* EarlGrey.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FD1000E81C5B466F00B2DB0A;
-			remoteInfo = EarlGrey;
-		};
-		FD387B461CA9C63900958AEE /* PBXContainerItemProxy */ = {
+		FD27060B1EC28D840017FDDF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD193F241BBDDA4F00153959 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FD193F2B1BBDDA4F00153959;
 			remoteInfo = FunctionalTestRig;
 		};
-		FD387B4D1CA9C67A00958AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 596D89B91C05AB0600025714 /* EarlGrey.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FD1000E81C5B466F00B2DB0A;
-			remoteInfo = EarlGrey;
-		};
-		FD5470F71BBDECBB000661FD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FD193F241BBDDA4F00153959 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FD193F2B1BBDDA4F00153959;
-			remoteInfo = FunctionalTests;
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		FD387B561CA9C6CA00958AEE /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(TEST_HOST)/..";
-			dstSubfolderSpec = 0;
-			files = (
-				FD387B571CA9C6DA00958AEE /* EarlGrey.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FD60CB601C5B5AFB00F8E318 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "$(TEST_HOST)/..";
-			dstSubfolderSpec = 0;
-			files = (
-				FD60CB611C5B5B1B00F8E318 /* EarlGrey.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		06243D6B1EC136200039AE15 /* ExampleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleTest.m; sourceTree = "<group>"; };
@@ -338,10 +239,12 @@
 		FD193FF51BBDDBF500153959 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FD193FF71BBDDBFB00153959 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FD193FF91BBDDC0000153959 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FD2705FB1EC289A80017FDDF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FD2706061EC28D840017FDDF /* DummyTestTarget.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DummyTestTarget.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD2706081EC28D840017FDDF /* DummyTestTarget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyTestTarget.m; sourceTree = "<group>"; };
+		FD27060A1EC28D840017FDDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD387B391CA9C5E200958AEE /* FTRSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FTRSwiftTests.swift; path = Sources/FTRSwiftTests.swift; sourceTree = "<group>"; };
-		FD387B411CA9C63900958AEE /* EarlGreyFunctionalSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EarlGreyFunctionalSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5470D61BBDE0A9000661FD /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = ../../../../../../../../../System/Library/Frameworks/IOKit.framework; sourceTree = "<group>"; };
-		FD5470F11BBDECBB000661FD /* EarlGreyFunctionalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EarlGreyFunctionalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD771E741DC1D9F500E199A1 /* FTRCustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTRCustomTextView.h; sourceTree = "<group>"; };
 		FD771E751DC1D9F500E199A1 /* FTRCustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTRCustomTextView.m; sourceTree = "<group>"; };
 		FD8277DE1D677D9F00C7C2AD /* EarlGrey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EarlGrey.swift; path = "../../gem/lib/earlgrey/files/Swift-3.0/EarlGrey.swift"; sourceTree = "<group>"; };
@@ -352,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2705FC1EC289A80017FDDF /* XCTest.framework in Frameworks */,
 				FD193FFA1BBDDC0000153959 /* QuartzCore.framework in Frameworks */,
 				FD193FF81BBDDBFB00153959 /* UIKit.framework in Frameworks */,
 				FD193FF61BBDDBF500153959 /* CoreGraphics.framework in Frameworks */,
@@ -360,31 +264,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD387B3E1CA9C63900958AEE /* Frameworks */ = {
+		FD2706031EC28D840017FDDF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD387B541CA9C6C500958AEE /* CoreFoundation.framework in Frameworks */,
-				FD387B551CA9C6C500958AEE /* Foundation.framework in Frameworks */,
-				FD387B531CA9C6BE00958AEE /* CoreGraphics.framework in Frameworks */,
-				FD387B521CA9C6B800958AEE /* UIKit.framework in Frameworks */,
-				FD387B511CA9C6B300958AEE /* QuartzCore.framework in Frameworks */,
-				FD387B501CA9C6AB00958AEE /* IOKit.framework in Frameworks */,
-				FD387B4F1CA9C69C00958AEE /* EarlGrey.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FD5470EE1BBDECBB000661FD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				596D89BF1C05AB1600025714 /* EarlGrey.framework in Frameworks */,
-				FD54713A1BBDF9C0000661FD /* IOKit.framework in Frameworks */,
-				FD5471391BBDF9AC000661FD /* QuartzCore.framework in Frameworks */,
-				FD5471381BBDF9A1000661FD /* UIKit.framework in Frameworks */,
-				FD5471371BBDF99B000661FD /* CoreGraphics.framework in Frameworks */,
-				FD5471361BBDF995000661FD /* Foundation.framework in Frameworks */,
-				FD5471351BBDF990000661FD /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +277,7 @@
 		4C0731EECC191DBA6FF23E1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD2705FB1EC289A80017FDDF /* XCTest.framework */,
 				FD5470D61BBDE0A9000661FD /* IOKit.framework */,
 			);
 			name = Frameworks;
@@ -594,6 +478,7 @@
 				FD193FF51BBDDBF500153959 /* CoreGraphics.framework */,
 				FD193FF31BBDDBED00153959 /* Foundation.framework */,
 				FD193FF11BBDDBE800153959 /* CoreFoundation.framework */,
+				FD2706071EC28D840017FDDF /* DummyTestTarget */,
 				FD193F2D1BBDDA4F00153959 /* Products */,
 				4C0731EECC191DBA6FF23E1E /* Frameworks */,
 			);
@@ -603,10 +488,18 @@
 			isa = PBXGroup;
 			children = (
 				FD193F2C1BBDDA4F00153959 /* FunctionalTestRig.app */,
-				FD5470F11BBDECBB000661FD /* EarlGreyFunctionalTests.xctest */,
-				FD387B411CA9C63900958AEE /* EarlGreyFunctionalSwiftTests.xctest */,
+				FD2706061EC28D840017FDDF /* DummyTestTarget.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FD2706071EC28D840017FDDF /* DummyTestTarget */ = {
+			isa = PBXGroup;
+			children = (
+				FD2706081EC28D840017FDDF /* DummyTestTarget.m */,
+				FD27060A1EC28D840017FDDF /* Info.plist */,
+			);
+			path = DummyTestTarget;
 			sourceTree = "<group>";
 		};
 		FD387B351CA9C5B500958AEE /* SwiftSources */ = {
@@ -638,44 +531,22 @@
 			productReference = FD193F2C1BBDDA4F00153959 /* FunctionalTestRig.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FD387B401CA9C63900958AEE /* EarlGreyFunctionalSwiftTests */ = {
+		FD2706051EC28D840017FDDF /* DummyTestTarget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD387B481CA9C63900958AEE /* Build configuration list for PBXNativeTarget "EarlGreyFunctionalSwiftTests" */;
+			buildConfigurationList = FD2706101EC28D840017FDDF /* Build configuration list for PBXNativeTarget "DummyTestTarget" */;
 			buildPhases = (
-				FD387B3D1CA9C63900958AEE /* Sources */,
-				FD387B3E1CA9C63900958AEE /* Frameworks */,
-				FD387B3F1CA9C63900958AEE /* Resources */,
-				FD387B561CA9C6CA00958AEE /* CopyFiles */,
+				FD2706021EC28D840017FDDF /* Sources */,
+				FD2706031EC28D840017FDDF /* Frameworks */,
+				FD2706041EC28D840017FDDF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FD387B4E1CA9C67A00958AEE /* PBXTargetDependency */,
-				FD387B471CA9C63900958AEE /* PBXTargetDependency */,
+				FD27060C1EC28D840017FDDF /* PBXTargetDependency */,
 			);
-			name = EarlGreyFunctionalSwiftTests;
-			productName = EarlGreyFunctionalSwiftTests;
-			productReference = FD387B411CA9C63900958AEE /* EarlGreyFunctionalSwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		FD5470F01BBDECBB000661FD /* EarlGreyFunctionalTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FD5470F91BBDECBB000661FD /* Build configuration list for PBXNativeTarget "EarlGreyFunctionalTests" */;
-			buildPhases = (
-				FD5470ED1BBDECBB000661FD /* Sources */,
-				FD5470EE1BBDECBB000661FD /* Frameworks */,
-				FD5470EF1BBDECBB000661FD /* Resources */,
-				FD60CB601C5B5AFB00F8E318 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				596D89C11C05AB8A00025714 /* PBXTargetDependency */,
-				FD5470F81BBDECBB000661FD /* PBXTargetDependency */,
-			);
-			name = EarlGreyFunctionalTests;
-			productName = EarlGreyFunctionalTests;
-			productReference = FD5470F11BBDECBB000661FD /* EarlGreyFunctionalTests.xctest */;
+			name = DummyTestTarget;
+			productName = DummyTestTarget;
+			productReference = FD2706061EC28D840017FDDF /* DummyTestTarget.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -690,13 +561,12 @@
 				TargetAttributes = {
 					FD193F2B1BBDDA4F00153959 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = EQHXZ8M8AV;
 					};
-					FD387B401CA9C63900958AEE = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = FD193F2B1BBDDA4F00153959;
-					};
-					FD5470F01BBDECBB000661FD = {
-						CreatedOnToolsVersion = 6.4;
+					FD2706051EC28D840017FDDF = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = EQHXZ8M8AV;
+						ProvisioningStyle = Automatic;
 						TestTargetID = FD193F2B1BBDDA4F00153959;
 					};
 				};
@@ -721,8 +591,7 @@
 			projectRoot = "";
 			targets = (
 				FD193F2B1BBDDA4F00153959 /* FunctionalTestRig */,
-				FD5470F01BBDECBB000661FD /* EarlGreyFunctionalTests */,
-				FD387B401CA9C63900958AEE /* EarlGreyFunctionalSwiftTests */,
+				FD2706051EC28D840017FDDF /* DummyTestTarget */,
 			);
 		};
 /* End PBXProject section */
@@ -778,14 +647,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD387B3F1CA9C63900958AEE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FD5470EF1BBDECBB000661FD /* Resources */ = {
+		FD2706041EC28D840017FDDF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -832,83 +694,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD387B3D1CA9C63900958AEE /* Sources */ = {
+		FD2706021EC28D840017FDDF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD983D6C1D67E8B40059F4CC /* EarlGrey.swift in Sources */,
-				FD387B4C1CA9C65100958AEE /* FTRSwiftTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FD5470ED1BBDECBB000661FD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				59467E331C9373B90089498B /* FTRAccessibilityTest.m in Sources */,
-				59467E341C9373B90089498B /* FTRActionSheetTest.m in Sources */,
-				59467E351C9373B90089498B /* FTRActivityIndicatorTest.m in Sources */,
-				59467E361C9373B90089498B /* FTRAlertViewTest.m in Sources */,
-				59467E371C9373B90089498B /* FTRAnalyticsTearDownOptOutTest.m in Sources */,
-				61192E411DB18A6500C74371 /* FTRAnalyticsPostSuperTearDownOptOutTest.m in Sources */,
-				59467E381C9373B90089498B /* FTRAnalyticsTest.m in Sources */,
-				59467E391C9373B90089498B /* FTRAnalyticsTestCaseSetupOptOutTest.m in Sources */,
-				59467E3A1C9373B90089498B /* FTRAnalyticsTestMethodOptOutTest.m in Sources */,
-				59467E3B1C9373B90089498B /* FTRAnalyticsTestSuiteSetupOptOutTest.m in Sources */,
-				59467E3C1C9373B90089498B /* FTRAnimationsTest.m in Sources */,
-				59467E3E1C9373B90089498B /* FTRBaseAnalyticsTest.m in Sources */,
-				59467E401C9373B90089498B /* FTRBaseIntegrationTest.m in Sources */,
-				59467E411C9373B90089498B /* FTRBasicInteractionTest.m in Sources */,
-				59467E421C9373B90089498B /* FTRCollectionViewTest.m in Sources */,
-				59467E431C9373B90089498B /* FTRErrorAPITest.m in Sources */,
-				59467E451C9373B90089498B /* FTRFailureHandler.m in Sources */,
-				59467E461C9373B90089498B /* FTRGeometryTest.m in Sources */,
-				59467E471C9373B90089498B /* FTRGestureTest.m in Sources */,
-				59467E481C9373B90089498B /* FTRKeyboardKeysTest.m in Sources */,
-				59467E491C9373B90089498B /* FTRLocalUIWebViewTest.m in Sources */,
-				59467E4A1C9373B90089498B /* FTRMatcherTest.m in Sources */,
-				59467E4B1C9373B90089498B /* FTRNetworkTest.m in Sources */,
-				61E4E0C31D755A9B007F9EE6 /* FTRPinchViewTest.m in Sources */,
-				D210ED941E72214A00978B9E /* FTRMultiFingerSwipeTest.m in Sources */,
-				59467E4C1C9373B90089498B /* FTROrientationChangeTest.m in Sources */,
-				61784D7C1DB6F4AB00054372 /* FTRAssertionHandler.m in Sources */,
-				59467E4D1C9373B90089498B /* FTROrientationPortraitOnlyChangeTest.m in Sources */,
-				59467E4E1C9373B90089498B /* FTRPickerViewInteractionTest.m in Sources */,
-				61192E421DB18A6500C74371 /* FTRAnalyticsNoEarlGreyUsageTest.m in Sources */,
-				59467E4F1C9373B90089498B /* FTRPresentedViewTest.m in Sources */,
-				59467E501C9373B90089498B /* FTRScreenshotTest.m in Sources */,
-				59467E511C9373B90089498B /* FTRScrollViewTest.m in Sources */,
-				6122AEB11DB7EF65006A094A /* FTRAnalyticsTestHarnessTest.m in Sources */,
-				59467E521C9373B90089498B /* FTRSlideTest.m in Sources */,
-				59467E531C9373B90089498B /* FTRSyncAPITest.m in Sources */,
-				59467E541C9373B90089498B /* FTRUITableViewTest.m in Sources */,
-				59467E551C9373B90089498B /* FTRUIWebViewTest.m in Sources */,
-				59467E561C9373B90089498B /* FTRVisibilityTest.m in Sources */,
+				FD2706091EC28D840017FDDF /* DummyTestTarget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		596D89C11C05AB8A00025714 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EarlGrey;
-			targetProxy = 596D89C01C05AB8A00025714 /* PBXContainerItemProxy */;
-		};
-		FD387B471CA9C63900958AEE /* PBXTargetDependency */ = {
+		FD27060C1EC28D840017FDDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FD193F2B1BBDDA4F00153959 /* FunctionalTestRig */;
-			targetProxy = FD387B461CA9C63900958AEE /* PBXContainerItemProxy */;
-		};
-		FD387B4E1CA9C67A00958AEE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EarlGrey;
-			targetProxy = FD387B4D1CA9C67A00958AEE /* PBXContainerItemProxy */;
-		};
-		FD5470F81BBDECBB000661FD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FD193F2B1BBDDA4F00153959 /* FunctionalTestRig */;
-			targetProxy = FD5470F71BBDECBB000661FD /* PBXContainerItemProxy */;
+			targetProxy = FD27060B1EC28D840017FDDF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -925,6 +725,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = EQHXZ8M8AV;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -936,7 +737,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
@@ -975,13 +776,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = EQHXZ8M8AV;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
@@ -1048,141 +850,73 @@
 			};
 			name = Release;
 		};
-		FD387B491CA9C63900958AEE /* Debug */ = {
+		FD27060D1EC28D840017FDDF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "TestRig/FunctionalTestRig-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = DummyTestTarget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					IOKit,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-Inc..DummyTestTarget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunctionalTestRig.app/FunctionalTestRig";
-				WARNING_CFLAGS = "$(inherited)";
 			};
 			name = Debug;
 		};
-		FD387B4A1CA9C63900958AEE /* Release */ = {
+		FD27060E1EC28D840017FDDF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "TestRig/FunctionalTestRig-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = DummyTestTarget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					IOKit,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunctionalTestRig.app/FunctionalTestRig";
-				WARNING_CFLAGS = "$(inherited)";
-			};
-			name = Release;
-		};
-		FD5470FA1BBDECBB000661FD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PREFIX_HEADER = FunctionalTests.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "TestRig/FunctionalTestRig-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					IOKit,
-				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Google-Inc..DummyTestTarget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunctionalTestRig.app/FunctionalTestRig";
-				WARNING_CFLAGS = "$(inherited)";
-			};
-			name = Debug;
-		};
-		FD5470FB1BBDECBB000661FD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PREFIX_HEADER = FunctionalTests.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "TestRig/FunctionalTestRig-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					IOKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunctionalTestRig.app/FunctionalTestRig";
-				WARNING_CFLAGS = "$(inherited)";
 			};
 			name = Release;
 		};
@@ -1207,23 +941,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD387B481CA9C63900958AEE /* Build configuration list for PBXNativeTarget "EarlGreyFunctionalSwiftTests" */ = {
+		FD2706101EC28D840017FDDF /* Build configuration list for PBXNativeTarget "DummyTestTarget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FD387B491CA9C63900958AEE /* Debug */,
-				FD387B4A1CA9C63900958AEE /* Release */,
+				FD27060D1EC28D840017FDDF /* Debug */,
+				FD27060E1EC28D840017FDDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FD5470F91BBDECBB000661FD /* Build configuration list for PBXNativeTarget "EarlGreyFunctionalTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FD5470FA1BBDECBB000661FD /* Debug */,
-				FD5470FB1BBDECBB000661FD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
